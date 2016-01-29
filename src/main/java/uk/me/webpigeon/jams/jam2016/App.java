@@ -27,10 +27,7 @@ public class App
         frame.setPreferredSize(new Dimension(800, 600));
         
         
-        GridWorld world = new GridWorld(30, 30);
-        for (int i=0; i<world.getWidth(); i++) {
-        	world.setTileAt(i, i, 1);
-        }
+        GridWorld world = MapLoader.loadWorld("chess");
         
         DefaultListModel<String> actionModel = new DefaultListModel<String>();
         
