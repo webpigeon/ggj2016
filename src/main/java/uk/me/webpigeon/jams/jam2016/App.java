@@ -3,7 +3,9 @@ package uk.me.webpigeon.jams.jam2016;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
+import javax.swing.JList;
 
 import uk.me.webpigeon.jams.jam2016.model.GridWorld;
 
@@ -30,8 +32,11 @@ public class App
         	world.setTileAt(i, i, 1);
         }
         
+        DefaultListModel<String> actionModel = new DefaultListModel<String>();
+        
         frame.add(new GridRenderer(world));
-        frame.add(new ButtonPanel(), BorderLayout.WEST);
+        frame.add(new ButtonPanel(actionModel), BorderLayout.WEST);
+        frame.add(new JList<String>(actionModel), BorderLayout.EAST);
         frame.pack();
         
         frame.setVisible(true);
