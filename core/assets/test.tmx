@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="isometric" renderorder="right-down" width="100" height="100" tilewidth="100" tileheight="64" nextobjectid="1">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="32" tileheight="32" nextobjectid="1">
  <tileset firstgid="1" name="roads" tilewidth="133" tileheight="131" tilecount="128">
   <tile id="0">
    <image width="132" height="83" source="artwork/base/landscapeTiles_000.png"/>
@@ -388,7 +388,7 @@
  </tileset>
  <layer name="Tile Layer 1" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJztzrENADAIwDC+6Ql8x+10RqxVF1vKnggAAADY1e2M8usRAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMB7DZqdAVI=
+   eJzt0bENACAMA7B+1f8/Y2OCORXYUvYoqQIAgL91ugBbX0KGP+Y47e+PLPsDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAvG0Bs5IETQ==
   </data>
  </layer>
 </map>

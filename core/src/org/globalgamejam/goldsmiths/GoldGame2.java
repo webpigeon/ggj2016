@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.IsometricTiledMapRenderer;
+import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 
 public class GoldGame2 extends ApplicationAdapter {
 	SpriteBatch batch;
@@ -25,15 +26,19 @@ public class GoldGame2 extends ApplicationAdapter {
 
 	@Override
 	public void render () {
+		Gdx.gl.glClearColor(1, 1, 0, 1);
+		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		
 		float unitScale = 1/16f;
-		IsometricTiledMapRenderer renderer = new IsometricTiledMapRenderer(tiledMap);
+		OrthogonalTiledMapRenderer renderer = new OrthogonalTiledMapRenderer(tiledMap, unitScale);
 		
 		OrthographicCamera camera = new OrthographicCamera();
+		camera.setToOrtho(false, 30, 30);
 		
+		renderer.setView(camera);
 		renderer.render();
 		
-		//Gdx.gl.glClearColor(1, 1, 0, 1);
-		//Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		
 		//batch.begin();
 		//batch.draw(img, 0, 0);
 		//batch.end();
