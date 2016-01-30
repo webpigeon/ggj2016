@@ -12,14 +12,14 @@ public class ActionStack implements ListModel<Action> {
 	private List<ListDataListener> listeners;
 	private int current = 0;
 	private boolean lock;
-	
+
 	public ActionStack() {
 		this.actions = new ArrayList<Action>();
 		this.listeners = new ArrayList<ListDataListener>();
 		this.current = 0;
 		this.lock = false;
 	}
-	
+
 	public void addListDataListener(ListDataListener arg0) {
 		listeners.add(arg0);
 	}
@@ -46,10 +46,11 @@ public class ActionStack implements ListModel<Action> {
 		if (lock) {
 			return;
 		}
-		
+
 		actions.add(action);
 		for (ListDataListener listener : listeners) {
-			ListDataEvent event = new ListDataEvent(this, ListDataEvent.INTERVAL_ADDED, actions.size()-1, actions.size());
+			ListDataEvent event = new ListDataEvent(this, ListDataEvent.INTERVAL_ADDED, actions.size() - 1,
+					actions.size());
 			listener.intervalAdded(event);
 		}
 	}
@@ -62,7 +63,7 @@ public class ActionStack implements ListModel<Action> {
 		if (lock) {
 			return;
 		}
-		
+
 		int size = actions.size();
 		actions.clear();
 		current = 0;
@@ -75,7 +76,7 @@ public class ActionStack implements ListModel<Action> {
 	public void lock() {
 		this.lock = true;
 	}
-	
+
 	public void unlock() {
 		this.lock = false;
 	}

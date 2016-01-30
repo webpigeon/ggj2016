@@ -15,14 +15,11 @@ public class GameStepper implements Runnable {
 	private Thread thread;
 	private JList list;
 	private boolean interactive;
-	
+
 	private int totalActions;
 	private int currLevel;
-	private String levels[] = {
-		"simple",
-		"large"
-	};
-	
+	private String levels[] = { "simple", "large" };
+
 	public GameStepper(JFrame frame, World world, ActionStack stack) {
 		this.stack = stack;
 		this.world = world;
@@ -30,7 +27,7 @@ public class GameStepper implements Runnable {
 		this.totalActions = 0;
 		this.currLevel = 0;
 	}
-	
+
 	public void doTick() {
 		System.out.println("tick");
 		world.update();
@@ -40,26 +37,27 @@ public class GameStepper implements Runnable {
 		if (!interactive) {
 			stack.lock();
 		}
-		
-		try {			
+
+		try {
 			int chainActions = 0;
-			while( stack.hasMoreActions() || interactive ) {
-				if(list != null) list.setSelectedIndex(stack.getCurrentAction());
+			while (stack.hasMoreActions() || interactive) {
+				if (list != null)
+					list.setSelectedIndex(stack.getCurrentAction());
 				chainActions++;
 				totalActions++;
 				doTick();
 				Thread.sleep(1000);
 			}
-			
-			//calculate score
+
+			// calculate score
 			int score = 0;
 			if (chainActions < 3) {
 				score = chainActions;
 			} else {
-				score = chainActions + (chainActions-3);
+				score = chainActions + (chainActions - 3);
 			}
 			world.addScore(score);
-			
+
 		} catch (InterruptedException ex) {
 			ex.printStackTrace();
 		} catch (RuntimeException ex) {
@@ -68,18 +66,18 @@ public class GameStepper implements Runnable {
 			stack.unlock();
 			return;
 		}
-		
+
 		if (world.hasPlayerWon()) {
 			int bonus = (world.getPar() - totalActions) * 4;
 			int levelScore = world.getLevelScore() + bonus;
 			world.updateGlobalScore(levelScore);
-			
-			JOptionPane.showMessageDialog(frame, "You win: "+levelScore);
+
+			JOptionPane.showMessageDialog(frame, "You win: " + levelScore);
 			GridWorld nextWorld = MapLoader.loadWorld(levels[currLevel++]);
-	        MapLoader.buildWorld(nextWorld, stack);
-	        world.setWorld(nextWorld);
+			MapLoader.buildWorld(nextWorld, stack);
+			world.setWorld(nextWorld);
 		}
-		
+
 		if (!interactive) {
 			stack.unlock();
 		}
@@ -93,15 +91,13 @@ public class GameStepper implements Runnable {
 		}
 	}
 
-
 	public void reset() {
 		stack.clear();
 	}
-	
-	public void setList(JList list){
+
+	public void setList(JList list) {
 		this.list = list;
 	}
-
 
 	public void runInteractive() {
 		if (thread == null || !thread.isAlive()) {
@@ -110,7 +106,6 @@ public class GameStepper implements Runnable {
 			thread.start();
 		}
 	}
-
 
 	private void setInteractive(boolean b) {
 		this.interactive = b;

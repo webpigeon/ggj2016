@@ -13,10 +13,10 @@ public class MapLoader {
 
 	public static final GridWorld loadWorld(String filename) {
 		InputStream is = MapLoader.class.getClassLoader().getResourceAsStream(filename);
-		
+
 		Scanner scanner = new Scanner(is);
-		
-		//figure out the map size
+
+		// figure out the map size
 		int width = scanner.nextInt();
 		int height = scanner.nextInt();
 		int startX = scanner.nextInt();
@@ -24,33 +24,33 @@ public class MapLoader {
 		int npcs = scanner.nextInt();
 		int par = scanner.nextInt();
 		scanner.nextLine();
-		
+
 		GridWorld world = new GridWorld(width, height);
 		world.setSpawnPoint(startX, startY);
 		world.setPar(par);
 
-		//load in the tiles
-		for (int y=0; y<height; y++) {
+		// load in the tiles
+		for (int y = 0; y < height; y++) {
 			Scanner line = new Scanner(scanner.nextLine());
-			for (int x=0; x<width; x++) {
-				System.out.println(x+","+y);
-				world.setTileAt(x,y,line.nextInt());
+			for (int x = 0; x < width; x++) {
+				System.out.println(x + "," + y);
+				world.setTileAt(x, y, line.nextInt());
 			}
 			line.close();
 		}
 		scanner.close();
-		
+
 		world.initialiseAICars(npcs);
-		
+
 		return world;
 	}
-	
-	public static final void buildWorld(GridWorld world, ActionStack actionModel){
-        ImageGallery imageGallery = new ImageGallery("graphics");
-        world.setGallery(imageGallery);
-		
-        Vector2D startPos = world.getSpawnPoint();
-        world.addEntity(new PlayerCar(startPos.getX(), startPos.getY(), actionModel));
+
+	public static final void buildWorld(GridWorld world, ActionStack actionModel) {
+		ImageGallery imageGallery = new ImageGallery("graphics");
+		world.setGallery(imageGallery);
+
+		Vector2D startPos = world.getSpawnPoint();
+		world.addEntity(new PlayerCar(startPos.getX(), startPos.getY(), actionModel));
 	}
-	
+
 }

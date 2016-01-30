@@ -7,5 +7,5 @@ public interface Action {
 	public void apply(GridWorld world, Entity entity);
 
 	public String getName();
-	
+
 }

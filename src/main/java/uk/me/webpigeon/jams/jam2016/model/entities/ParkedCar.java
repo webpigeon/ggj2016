@@ -13,13 +13,14 @@ public class ParkedCar extends Entity {
 		super();
 		this.location = new Vector2D(x, y);
 	}
-	
+
 	@Override
 	public void draw(Graphics2D g, ImageGallery ig) {
 		int padx = 4;
-		
+
 		g.setColor(Color.RED);
-		g.fillRect(location.getX()*World.TILE_SIZE+padx, location.getY()*World.TILE_SIZE, World.TILE_SIZE-(padx*2), World.TILE_SIZE);
+		g.fillRect(location.getX() * World.TILE_SIZE + padx, location.getY() * World.TILE_SIZE,
+				World.TILE_SIZE - (padx * 2), World.TILE_SIZE);
 	}
-	
+
 }

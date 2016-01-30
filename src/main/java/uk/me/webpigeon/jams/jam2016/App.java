@@ -29,53 +29,50 @@ import uk.me.webpigeon.jams.jam2016.model.entities.PlayerCar;
  * Hello world!
  *
  */
-public class App 
-{
-    public static void main( String[] args ) throws Exception
-    {
-        System.out.println( "Hello World!" );
-        System.out.println("Strawberry");
-        System.out.println("Orange");
-        System.out.println("Gooseberry");
-        
-        JFrame frame = new JFrame("Global Game Jam 2016");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setPreferredSize(new Dimension(800, 600));
-        
-        ActionStack actionModel = new ActionStack();
-        ButtonPanel buttons = new ButtonPanel(actionModel);
-        buttons.addLegalAction(new ForwardAction());
-        buttons.addLegalAction(new RotateAction());
-        buttons.addLegalAction(new RotateOtherLeftAction());
-        buttons.addLegalAction(new Wait());
-        
-        //build the world
-        GridWorld gridWorld = MapLoader.loadWorld("simple");
-        MapLoader.buildWorld(gridWorld, actionModel);
-        
-        World world = new World(gridWorld);
-        GameStepper stepper = new GameStepper(frame, world, actionModel);
-        
-        Box box = Box.createVerticalBox();
-        JToolBar toolbar = new JToolBar();
-        toolbar.add(App.buildButton("run", new GameStepControls(stepper)));
-        toolbar.add(App.buildButton("clear", new GameStepControls(stepper)));
-        toolbar.add(App.buildButton("simulate", new GameStepControls(stepper)));
-        box.add(toolbar);
-        JList<Action> list = new JList<Action>(actionModel);
-        stepper.setList(list);
-        box.add(list);
-        
-        frame.add(new JScrollPane(world));
-        frame.add(new ButtonPanel(actionModel), BorderLayout.WEST);
-        frame.add(buttons, BorderLayout.WEST);
-        frame.add(box, BorderLayout.EAST);
-        frame.pack();
-        
-        frame.setVisible(true);
-    }
-    
-	
+public class App {
+	public static void main(String[] args) throws Exception {
+		System.out.println("Hello World!");
+		System.out.println("Strawberry");
+		System.out.println("Orange");
+		System.out.println("Gooseberry");
+
+		JFrame frame = new JFrame("Global Game Jam 2016");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setPreferredSize(new Dimension(800, 600));
+
+		ActionStack actionModel = new ActionStack();
+		ButtonPanel buttons = new ButtonPanel(actionModel);
+		buttons.addLegalAction(new ForwardAction());
+		buttons.addLegalAction(new RotateAction());
+		buttons.addLegalAction(new RotateOtherLeftAction());
+		buttons.addLegalAction(new Wait());
+
+		// build the world
+		GridWorld gridWorld = MapLoader.loadWorld("simple");
+		MapLoader.buildWorld(gridWorld, actionModel);
+
+		World world = new World(gridWorld);
+		GameStepper stepper = new GameStepper(frame, world, actionModel);
+
+		Box box = Box.createVerticalBox();
+		JToolBar toolbar = new JToolBar();
+		toolbar.add(App.buildButton("run", new GameStepControls(stepper)));
+		toolbar.add(App.buildButton("clear", new GameStepControls(stepper)));
+		toolbar.add(App.buildButton("simulate", new GameStepControls(stepper)));
+		box.add(toolbar);
+		JList<Action> list = new JList<Action>(actionModel);
+		stepper.setList(list);
+		box.add(list);
+
+		frame.add(new JScrollPane(world));
+		frame.add(new ButtonPanel(actionModel), BorderLayout.WEST);
+		frame.add(buttons, BorderLayout.WEST);
+		frame.add(box, BorderLayout.EAST);
+		frame.pack();
+
+		frame.setVisible(true);
+	}
+
 	public static JButton buildButton(String text, ActionListener listener) {
 		JButton btn = new JButton(text);
 		btn.setActionCommand(text);

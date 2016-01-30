@@ -11,7 +11,7 @@ public class RotateOtherLeftAction extends AbstractAction {
 	public void apply(GridWorld world, Entity entity) {
 		Direction current = entity.getFacing();
 		Direction next = current.getLeftDirection();
-		
+
 		entity.setFacing(next);
 	}
 
