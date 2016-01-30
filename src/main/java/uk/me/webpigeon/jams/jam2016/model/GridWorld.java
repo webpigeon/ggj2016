@@ -20,12 +20,16 @@ public class GridWorld{
 	private int score;
 	private ImageGallery imageGallery;
 	
+	private Vector2D spawnPoint;
+	
 	
 	private Color[] types = {
 			Color.GREEN,
 			Color.BLACK,
 			Color.YELLOW
 	};
+	private boolean hasWon;
+	private int npcs;
 	
 	public GridWorld(int width, int height) {
 		this.size = new Dimension(width, height);
@@ -33,6 +37,8 @@ public class GridWorld{
 		this.player = new Point(0,0);
 		this.entities = new ArrayList<Entity>();
 		this.score = 0;
+		this.hasWon = false;
+		this.spawnPoint = null;
 	}
 	
 	public void addEntity(Entity entity) {
@@ -101,13 +107,16 @@ public class GridWorld{
 		}	
 	}
 	
-	public void initialiseAICars(){
+	public void initialiseAICars(int npcs){
+		int npcsLeft = npcs;
+		
 		for(int x = 0; x < size.width; x++){
 			for(int y = 0; y < size.height; y++){
-				if(isRoadType(x, y)){
+				if(isRoadType(x, y) && npcsLeft > 0){
 					if(Math.random() > 0.95){
 						// TODO Add aicar
 						addEntity(new AICar(new Vector2D(x, y)));
+						npcsLeft--;
 					}
 				}
 			}
@@ -130,8 +139,8 @@ public class GridWorld{
 		return score;
 	}
 
-	public void incrementScore() {
-		this.score++;
+	public void addScore(int extra) {
+		this.score += extra;
 	}
 
 	public boolean isViable(Vector2D nextPos) {
@@ -145,6 +154,22 @@ public class GridWorld{
 	
 	public void setGallery(ImageGallery gallery){
 		this.imageGallery = gallery;
+	}
+
+	public void setWinner() {
+		this.hasWon = true;
+	}
+	
+	public boolean hasWon() {
+		return hasWon;
+	}
+
+	public void setSpawnPoint(int startX, int startY) {
+		this.spawnPoint = new Vector2D(startX, startY);
+	}
+	
+	public Vector2D getSpawnPoint() {
+		return this.spawnPoint;
 	}
 
 }

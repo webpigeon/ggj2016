@@ -30,14 +30,14 @@ public class PlayerCar extends Entity {
 			action.apply(world, this);
 			
 			int typeType = world.getTileType(location.getX(), location.getY());
-			if (typeType == 2) {
-				world.incrementScore();
+			if (typeType == 99) {
+				world.setWinner();
 			}
 			
 			Collection<Entity> entities = world.getEntityAt(location.getX(), location.getY());
 			for (Entity entity : entities) {
 				if (entity.isGoal()) {
-					world.incrementScore();
+					world.setWinner();
 				}
 			}
 			

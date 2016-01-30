@@ -32,7 +32,7 @@ public class World extends JComponent{
 	}
 	
 	public boolean hasPlayerWon() {
-		return gridWorld.getScore() == 1;
+		return gridWorld.hasWon();
 	}
 	
 	/**
@@ -51,11 +51,24 @@ public class World extends JComponent{
 	
 	@Override
 	public void paintComponent(Graphics graphics){
-		graphics.setColor(Color.RED);
+		graphics.setColor(Color.BLACK);
 		graphics.fillRect(0, 0, getWidth(), getHeight());
 		
 		Graphics2D g2 = (Graphics2D)graphics;
 		gridWorld.render(g2);
+	}
+
+	public void addScore(int score) {
+		this.gridWorld.addScore(score);
+	}
+
+	public int getScore() {
+		return gridWorld.getScore();
+	}
+
+	public void setWorld(GridWorld nextWorld) {
+		gridWorld = nextWorld;
+		repaint();
 	}
 
 }

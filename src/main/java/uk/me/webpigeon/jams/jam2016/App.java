@@ -19,6 +19,7 @@ import uk.me.webpigeon.jams.jam2016.model.GridWorld;
 import uk.me.webpigeon.jams.jam2016.model.ImageGallery;
 import uk.me.webpigeon.jams.jam2016.model.RotateAction;
 import uk.me.webpigeon.jams.jam2016.model.RotateOtherLeftAction;
+import uk.me.webpigeon.jams.jam2016.model.Vector2D;
 import uk.me.webpigeon.jams.jam2016.model.Wait;
 import uk.me.webpigeon.jams.jam2016.model.World;
 import uk.me.webpigeon.jams.jam2016.model.entities.ParkedCar;
@@ -41,12 +42,6 @@ public class App
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setPreferredSize(new Dimension(800, 600));
         
-        GridWorld gridWorld = MapLoader.loadWorld("large");
-        ImageGallery imageGallery = new ImageGallery("graphics");
-        World world = new World(gridWorld);
-        gridWorld.setGallery(imageGallery);
-        
-        
         ActionStack actionModel = new ActionStack();
         ButtonPanel buttons = new ButtonPanel(actionModel);
         buttons.addLegalAction(new ForwardAction());
@@ -54,9 +49,11 @@ public class App
         buttons.addLegalAction(new RotateOtherLeftAction());
         buttons.addLegalAction(new Wait());
         
-        gridWorld.addEntity(new PlayerCar(1, 9, actionModel));
-        gridWorld.addEntity(new ParkedCar(1,4));
+        //build the world
+        GridWorld gridWorld = MapLoader.loadWorld("simple");
+        MapLoader.buildWorld(gridWorld, actionModel);
         
+        World world = new World(gridWorld);
         GameStepper stepper = new GameStepper(frame, world, actionModel);
         
         Box box = Box.createVerticalBox();

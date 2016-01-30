@@ -5,6 +5,7 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 
 import uk.me.webpigeon.jams.jam2016.model.ActionStack;
+import uk.me.webpigeon.jams.jam2016.model.GridWorld;
 import uk.me.webpigeon.jams.jam2016.model.World;
 
 public class GameStepper implements Runnable {
@@ -44,6 +45,7 @@ public class GameStepper implements Runnable {
 			}
 			
 			score = numActions + numActions/4;
+			world.addScore(score);
 		} catch (InterruptedException ex) {
 			ex.printStackTrace();
 		} catch (RuntimeException ex) {
@@ -51,7 +53,10 @@ public class GameStepper implements Runnable {
 		}
 		
 		if (world.hasPlayerWon()) {
-			JOptionPane.showMessageDialog(frame, "You win: "+score);
+			JOptionPane.showMessageDialog(frame, "You win: "+world.getScore());
+			GridWorld nextWorld = MapLoader.loadWorld("large");
+	        MapLoader.buildWorld(nextWorld, stack);
+	        world.setWorld(nextWorld);
 		}
 		
 		if (!interactive) {
