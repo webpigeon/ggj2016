@@ -9,13 +9,16 @@ public class ForwardAction extends AbstractAction {
 		super("Forwards");
 	}
 	
-	@Override
 	public void apply(GridWorld world, Entity entity) {
 		Vector2D currentPos = entity.getPosition();
 		Direction direction = entity.getFacing();
-		
 		currentPos = currentPos.add(direction.getVector());
-		entity.setPosition(currentPos);
+		
+		if (world.isRoadType(currentPos.getX(), currentPos.getY())) {
+			entity.setPosition(currentPos);
+		} else {
+			throw new RuntimeException("You crashed");
+		}
 	}
 
 }

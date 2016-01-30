@@ -10,8 +10,12 @@ public class GameStepControls implements ActionListener {
 		this.stepper = stepper;
 	}
 	
-	public void actionPerformed(ActionEvent e) {
-		stepper.doTick();
+	public void actionPerformed(ActionEvent e) {	
+		if ("clear".equals(e.getActionCommand())) {
+			stepper.reset();
+		} else if ("run".equals(e.getActionCommand())) {		
+			stepper.runSimulation();	
+		}
 	}
 
 }

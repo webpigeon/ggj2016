@@ -6,11 +6,14 @@ import java.awt.Graphics2D;
 import uk.me.webpigeon.jams.jam2016.model.Action;
 import uk.me.webpigeon.jams.jam2016.model.ActionStack;
 import uk.me.webpigeon.jams.jam2016.model.GridWorld;
+import uk.me.webpigeon.jams.jam2016.model.Vector2D;
 
 public class PlayerCar extends Entity {
 	private ActionStack actions;
 	
-	public PlayerCar(ActionStack stack) {
+	public PlayerCar(int x, int y, ActionStack stack) {
+		super();
+		this.location = new Vector2D(x,y);
 		this.actions = stack;
 	}
 
@@ -24,10 +27,18 @@ public class PlayerCar extends Entity {
 	
 	@Override
 	public void draw(Graphics2D g) {
+		double degrees = (facing.ordinal() * Math.PI) / 2;
+		
+		g.translate(location.getX()*32, location.getY()*32);
+		g.rotate(degrees);
+		
 		int padx = 4;
 		
 		g.setColor(Color.BLUE);
-		g.fillRect(location.getX()*32+padx, location.getY()*32, 32-(padx*2), 32);
+		g.fillRect(-16+padx, -16, 32-(padx*2), 32);
+		
+		g.rotate(-degrees);
+		g.translate(-location.getX()*32, -location.getY()*32);
 	}
 	
 	

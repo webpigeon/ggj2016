@@ -23,14 +23,11 @@ public class ButtonPanel extends JPanel implements ActionListener {
 		this.model = actionModel;
 		this.actionMap = new HashMap<String, Action>();
 		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
-		add(App.buildButton("Forwards", this));
-		add(App.buildButton("backwards", this));
-		add(App.buildButton("Rotate 90", this));
-		add(App.buildButton("Rotate 180", this));
 	}
 	
 	public void addLegalAction(Action action){
 		actionMap.put(action.getName(), action);
+		add(App.buildButton(action.getName(), this));
 	}
 
 	public void actionPerformed(ActionEvent arg0) {

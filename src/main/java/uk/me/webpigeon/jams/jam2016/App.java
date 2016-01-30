@@ -15,7 +15,10 @@ import uk.me.webpigeon.jams.jam2016.model.Action;
 import uk.me.webpigeon.jams.jam2016.model.ActionStack;
 import uk.me.webpigeon.jams.jam2016.model.ForwardAction;
 import uk.me.webpigeon.jams.jam2016.model.GridWorld;
+import uk.me.webpigeon.jams.jam2016.model.RotateAction;
+import uk.me.webpigeon.jams.jam2016.model.Wait;
 import uk.me.webpigeon.jams.jam2016.model.World;
+import uk.me.webpigeon.jams.jam2016.model.entities.ParkedCar;
 import uk.me.webpigeon.jams.jam2016.model.entities.PlayerCar;
 
 /**
@@ -43,12 +46,18 @@ public class App
         ActionStack actionModel = new ActionStack();
         ButtonPanel buttons = new ButtonPanel(actionModel);
         buttons.addLegalAction(new ForwardAction());
+        buttons.addLegalAction(new RotateAction());
+        buttons.addLegalAction(new Wait());
         
-        gridWorld.addEntity(new PlayerCar(actionModel));
+        gridWorld.addEntity(new PlayerCar(1, 9, actionModel));
+        gridWorld.addEntity(new ParkedCar(1,4));
+        
+        GameStepper stepper = new GameStepper(frame, world, actionModel);
         
         Box box = Box.createVerticalBox();
         JToolBar toolbar = new JToolBar();
-        toolbar.add(App.buildButton("run", new GameStepControls(new GameStepper(world, actionModel))));
+        toolbar.add(App.buildButton("run", new GameStepControls(stepper)));
+        toolbar.add(App.buildButton("clear", new GameStepControls(stepper)));
         box.add(toolbar);
         
         box.add(new JList<Action>(actionModel));

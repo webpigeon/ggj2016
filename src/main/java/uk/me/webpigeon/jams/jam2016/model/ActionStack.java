@@ -48,4 +48,18 @@ public class ActionStack implements ListModel<Action> {
 		}
 	}
 
+	public boolean hasMoreActions() {
+		return current < actions.size();
+	}
+
+	public void clear() {
+		int size = actions.size();
+		actions.clear();
+		current = 0;
+		for (ListDataListener listener : listeners) {
+			ListDataEvent event = new ListDataEvent(this, ListDataEvent.INTERVAL_REMOVED, 0, size);
+			listener.intervalRemoved(event);
+		}
+	}
+
 }

@@ -54,4 +54,8 @@ public class Entity {
 	public void setPosition(Vector2D location) {
 		this.location = location;
 	}
+
+	public void setFacing(Direction direction) {
+		this.facing = direction;
+	}
 }
