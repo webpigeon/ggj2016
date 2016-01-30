@@ -73,14 +73,18 @@ public class GameStepper implements Runnable {
 			world.updateGlobalScore(levelScore);
 
 			JOptionPane.showMessageDialog(frame, "You win: " + levelScore);
-			GridWorld nextWorld = MapLoader.loadWorld(levels[currLevel++]);
-			MapLoader.buildWorld(nextWorld, stack);
-			world.setWorld(nextWorld);
+			loadWorld();
 		}
 
 		if (!interactive) {
 			stack.unlock();
 		}
+	}
+	
+	public void loadWorld() {
+		GridWorld nextWorld = MapLoader.loadWorld(levels[currLevel++]);
+		MapLoader.buildWorld(nextWorld, stack);
+		world.setWorld(nextWorld);
 	}
 
 	public void runSimulation() {

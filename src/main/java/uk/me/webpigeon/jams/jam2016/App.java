@@ -48,11 +48,9 @@ public class App {
 		buttons.addLegalAction(new Wait());
 
 		// build the world
-		GridWorld gridWorld = MapLoader.loadWorld("simple");
-		MapLoader.buildWorld(gridWorld, actionModel);
-
-		World world = new World(gridWorld);
+		World world = new World();
 		GameStepper stepper = new GameStepper(frame, world, actionModel);
+		stepper.loadWorld();
 
 		Box box = Box.createVerticalBox();
 		JToolBar toolbar = new JToolBar();

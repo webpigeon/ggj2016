@@ -28,9 +28,8 @@ public class World extends JComponent {
 	private GridWorld gridWorld;
 	private int totalScore = 0;
 
-	public World(GridWorld gridWorld) {
-		this.gridWorld = gridWorld;
-		this.setPreferredSize(new Dimension(gridWorld.getWidth() * TILE_SIZE, gridWorld.getHeight() * TILE_SIZE));
+	public World() {
+		this.gridWorld = null;
 	}
 
 	public boolean hasPlayerWon() {
@@ -56,6 +55,10 @@ public class World extends JComponent {
 	public void paintComponent(Graphics graphics) {
 		graphics.setColor(Color.BLACK);
 		graphics.fillRect(0, 0, getWidth(), getHeight());
+		
+		if (gridWorld == null){
+			return;
+		}
 
 		Graphics2D g2 = (Graphics2D) graphics;
 		gridWorld.render(g2);
@@ -71,6 +74,7 @@ public class World extends JComponent {
 
 	public void setWorld(GridWorld nextWorld) {
 		gridWorld = nextWorld;
+		setPreferredSize(new Dimension(gridWorld.getWidth() * TILE_SIZE, gridWorld.getHeight() * TILE_SIZE));
 		repaint();
 	}
 
