@@ -32,8 +32,15 @@ public class App {
 
 		JFrame frame = new JFrame("Global Game Jam 2016");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setPreferredSize(new Dimension(800, 600));
+		//frame.setPreferredSize(new Dimension(800, 600));
 
+		frame.add(new TitleScreen(frame));
+		frame.pack();
+
+		frame.setVisible(true);
+	}
+	
+	public static void runGame(JFrame frame) {
 		ActionStack actionModel = new ActionStack();
 		ButtonPanel buttons = new ButtonPanel(actionModel);
 		buttons.addLegalAction(new ForwardAction());
@@ -48,21 +55,23 @@ public class App {
 
 		Box box = Box.createVerticalBox();
 		JToolBar toolbar = new JToolBar();
+		toolbar.setFloatable(false);
 		toolbar.add(App.buildButton("run", new GameStepControls(stepper)));
 		toolbar.add(App.buildButton("clear", new GameStepControls(stepper)));
 		toolbar.add(App.buildButton("simulate", new GameStepControls(stepper)));
 		box.add(toolbar);
 		JList<Action> list = new JList<Action>(actionModel);
 		stepper.setList(list);
-		box.add(list);
-
-		frame.add(new JScrollPane(world));
+		box.add(new JScrollPane(list));
+		
+		frame.add(new JScrollPane(world), BorderLayout.CENTER);
 		frame.add(new ButtonPanel(actionModel), BorderLayout.WEST);
 		frame.add(buttons, BorderLayout.WEST);
 		frame.add(box, BorderLayout.EAST);
+		
 		frame.pack();
-
-		frame.setVisible(true);
+		frame.invalidate();
+		frame.repaint();
 	}
 
 	public static JButton buildButton(String text, ActionListener listener) {
