@@ -18,6 +18,7 @@ public class GridWorld{
 	
 	private List<Entity> entities = new ArrayList<Entity>();
 	private int score;
+	private ImageGallery imageGallery;
 	
 	
 	private Color[] types = {
@@ -64,11 +65,15 @@ public class GridWorld{
 			for (int y=0; y<size.height; y++) {
 				int type = grid[x][y];
 				
-				g.setColor(types[type]);
-				g.fillRect(x*World.TILE_SIZE, y*World.TILE_SIZE, World.TILE_SIZE, World.TILE_SIZE);
-				
+				if(imageGallery != null){
+					g.drawImage(imageGallery.get(type), x * World.TILE_SIZE, y * World.TILE_SIZE, World.TILE_SIZE, World.TILE_SIZE, null);
+				}else{
+					g.setColor(types[type]);
+					g.fillRect(x*World.TILE_SIZE, y*World.TILE_SIZE, World.TILE_SIZE, World.TILE_SIZE);
+				}
 				g.setColor(Color.BLACK);
 				g.drawRect(x*World.TILE_SIZE, y*World.TILE_SIZE, World.TILE_SIZE, World.TILE_SIZE);
+				
 			}
 		}
 		
@@ -136,6 +141,10 @@ public class GridWorld{
 		
 		Collection<Entity> entities = getEntityAt(nextPos.getX(), nextPos.getY());
 		return entities.isEmpty();
+	}
+	
+	public void setGallery(ImageGallery gallery){
+		this.imageGallery = gallery;
 	}
 
 }
