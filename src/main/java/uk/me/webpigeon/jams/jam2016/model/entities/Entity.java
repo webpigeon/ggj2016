@@ -18,11 +18,11 @@ public class Entity {
 	// Location in grid co-ordinates
 	protected Vector2D location;
 
-	protected Vector2D facing;
+	protected Direction facing;
 	
 	public Entity() {
 		this.location = new Vector2D(0,0);
-		this.facing = Vector2D.UP;
+		this.facing = Direction.NORTH;
 	}
 
 	/**
@@ -45,7 +45,7 @@ public class Entity {
 		return location;
 	}
 
-	public Vector2D getFacing() {
+	public Direction getFacing() {
 		return facing;
 	}
 }
