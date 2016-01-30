@@ -39,7 +39,6 @@ public class App
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setPreferredSize(new Dimension(800, 600));
         
-        
         GridWorld gridWorld = MapLoader.loadWorld("simple");
         World world = new World(gridWorld);
         
