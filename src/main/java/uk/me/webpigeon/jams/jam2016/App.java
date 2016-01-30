@@ -5,7 +5,6 @@ import java.awt.Dimension;
 import java.awt.event.ActionListener;
 
 import javax.swing.Box;
-import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JList;
@@ -15,15 +14,10 @@ import javax.swing.JToolBar;
 import uk.me.webpigeon.jams.jam2016.model.Action;
 import uk.me.webpigeon.jams.jam2016.model.ActionStack;
 import uk.me.webpigeon.jams.jam2016.model.ForwardAction;
-import uk.me.webpigeon.jams.jam2016.model.GridWorld;
-import uk.me.webpigeon.jams.jam2016.model.ImageGallery;
 import uk.me.webpigeon.jams.jam2016.model.RotateAction;
 import uk.me.webpigeon.jams.jam2016.model.RotateOtherLeftAction;
-import uk.me.webpigeon.jams.jam2016.model.Vector2D;
 import uk.me.webpigeon.jams.jam2016.model.Wait;
 import uk.me.webpigeon.jams.jam2016.model.World;
-import uk.me.webpigeon.jams.jam2016.model.entities.ParkedCar;
-import uk.me.webpigeon.jams.jam2016.model.entities.PlayerCar;
 
 /**
  * Hello world!

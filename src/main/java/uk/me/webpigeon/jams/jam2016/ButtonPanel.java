@@ -6,8 +6,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.swing.BoxLayout;
-import javax.swing.DefaultListModel;
-import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import uk.me.webpigeon.jams.jam2016.model.Action;

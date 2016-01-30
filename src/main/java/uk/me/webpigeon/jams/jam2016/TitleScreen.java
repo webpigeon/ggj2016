@@ -3,8 +3,6 @@ package uk.me.webpigeon.jams.jam2016;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
 import javax.swing.JComponent;
 

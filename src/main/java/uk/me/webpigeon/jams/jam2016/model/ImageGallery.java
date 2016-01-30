@@ -7,8 +7,6 @@ import java.util.Scanner;
 
 import javax.imageio.ImageIO;
 
-import uk.me.webpigeon.jams.jam2016.MapLoader;
-
 /**
  * This class will hold all the graphics
  * 

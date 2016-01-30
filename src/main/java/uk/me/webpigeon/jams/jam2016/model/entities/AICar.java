@@ -3,11 +3,7 @@ package uk.me.webpigeon.jams.jam2016.model.entities;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
 
-import uk.me.webpigeon.jams.jam2016.model.Direction;
 import uk.me.webpigeon.jams.jam2016.model.GridWorld;
 import uk.me.webpigeon.jams.jam2016.model.ImageGallery;
 import uk.me.webpigeon.jams.jam2016.model.Vector2D;

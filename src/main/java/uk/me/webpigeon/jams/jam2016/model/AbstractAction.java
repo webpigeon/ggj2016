@@ -1,7 +1,5 @@
 package uk.me.webpigeon.jams.jam2016.model;
 
-import uk.me.webpigeon.jams.jam2016.model.entities.Entity;
-
 public abstract class AbstractAction implements Action {
 	private final String name;
 
