@@ -30,6 +30,8 @@ public class MapLoader {
 		}
 		scanner.close();
 		
+		world.initialiseAICars();
+		
 		return world;
 	}
 	
