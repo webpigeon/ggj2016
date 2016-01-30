@@ -2,23 +2,34 @@ package uk.me.webpigeon.jams.jam2016;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import uk.me.webpigeon.jams.jam2016.model.Action;
+
 public class ButtonPanel extends JPanel implements ActionListener {
-	private DefaultListModel<String> model;
+	private DefaultListModel<Action> model;
+	private Map<String, Action> actionMap;
 	
-	public ButtonPanel(DefaultListModel<String> model){
+	
+	public ButtonPanel(DefaultListModel<Action> actionModel){
 		super();
-		this.model = model;
+		this.model = actionModel;
+		this.actionMap = new HashMap<String, Action>();
 		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
-		add(buildButton("Fowards", this));
+		add(buildButton("Forwards", this));
 		add(buildButton("backwards", this));
 		add(buildButton("Rotate 90", this));
 		add(buildButton("Rotate 180", this));
+	}
+	
+	public void addLegalAction(Action action){
+		actionMap.put(action.getName(), action);
 	}
 	
 	private static JButton buildButton(String text, ActionListener listener) {
@@ -30,7 +41,10 @@ public class ButtonPanel extends JPanel implements ActionListener {
 
 	public void actionPerformed(ActionEvent arg0) {
 		System.out.println("clicked "+arg0.getActionCommand());
-		model.addElement(arg0.getActionCommand());
+		Action action = actionMap.get(arg0.getActionCommand());
+		if (action != null) {
+			model.addElement(action);
+		}
 	}
 
 }
