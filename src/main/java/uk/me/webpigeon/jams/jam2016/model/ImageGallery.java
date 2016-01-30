@@ -5,6 +5,8 @@ import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Scanner;
 
+import javax.imageio.ImageIO;
+
 import uk.me.webpigeon.jams.jam2016.MapLoader;
 
 /**
@@ -32,12 +34,21 @@ public class ImageGallery {
 			String[] parts = line.split(" ");
 			// Format should be index space filename
 			int index = Integer.parseInt(parts[0]);
-			String fileName = parts[1];
+			String fileName = "roads/" + parts[1];
+			
+			try{
+				BufferedImage image = ImageIO.read(ImageGallery.class.getClassLoader().getResourceAsStream(fileName));
+				images.put(index,  image);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
 		}
 	}
 	
 	public BufferedImage get(int index){
+		System.out.println("Asked for: " + index);
 		if(images.containsKey(index)){
+			System.out.println("Image: " + index + " requested succesfully");
 			return images.get(index);
 		}
 		return null;

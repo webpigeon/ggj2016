@@ -15,6 +15,7 @@ import uk.me.webpigeon.jams.jam2016.model.Action;
 import uk.me.webpigeon.jams.jam2016.model.ActionStack;
 import uk.me.webpigeon.jams.jam2016.model.ForwardAction;
 import uk.me.webpigeon.jams.jam2016.model.GridWorld;
+import uk.me.webpigeon.jams.jam2016.model.ImageGallery;
 import uk.me.webpigeon.jams.jam2016.model.RotateAction;
 import uk.me.webpigeon.jams.jam2016.model.RotateOtherLeftAction;
 import uk.me.webpigeon.jams.jam2016.model.Wait;
@@ -40,7 +41,9 @@ public class App
         frame.setPreferredSize(new Dimension(800, 600));
         
         GridWorld gridWorld = MapLoader.loadWorld("large");
+        ImageGallery imageGallery = new ImageGallery("graphics");
         World world = new World(gridWorld);
+        gridWorld.setGallery(imageGallery);
         
         
         ActionStack actionModel = new ActionStack();
