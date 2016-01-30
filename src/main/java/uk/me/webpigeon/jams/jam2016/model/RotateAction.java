@@ -16,7 +16,6 @@ public class RotateAction extends AbstractAction {
 		currID %= Direction.values().length;
 		
 		entity.setFacing(Direction.values()[currID]);
-		
 	}
 
 }

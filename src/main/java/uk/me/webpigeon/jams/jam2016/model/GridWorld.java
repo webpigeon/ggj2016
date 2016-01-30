@@ -19,7 +19,8 @@ public class GridWorld{
 	
 	private Color[] types = {
 			Color.GREEN,
-			Color.BLACK
+			Color.BLACK,
+			Color.YELLOW
 	};
 	
 	public GridWorld(int width, int height) {
@@ -70,7 +71,8 @@ public class GridWorld{
 	}
 	
 	public boolean isRoadType(int x, int y){
-		return getTileType(x, y) == 1;
+		int type = getTileType(x,y);
+		return type == 1 || type == 2;
 	}
 
 	public void update() {

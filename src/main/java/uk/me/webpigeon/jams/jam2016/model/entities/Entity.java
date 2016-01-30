@@ -2,12 +2,10 @@ package uk.me.webpigeon.jams.jam2016.model.entities;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.Point;
 
 import uk.me.webpigeon.jams.jam2016.model.Direction;
 import uk.me.webpigeon.jams.jam2016.model.GridWorld;
 import uk.me.webpigeon.jams.jam2016.model.Vector2D;
-import uk.me.webpigeon.jams.jam2016.model.World;
 
 /**
  * This is an entity
@@ -40,7 +38,7 @@ public class Entity {
 	 */
 	public void draw(Graphics2D graphics){
 		graphics.setColor(Color.BLUE);
-		graphics.fillOval(location.getX() * 32 - 16, location.getY() * 32 - 16, 32, 32);
+		graphics.fillRect(location.getX() * 32 - 16, location.getY() * 32 - 16, 32, 32);
 	}
 
 	public Vector2D getPosition() {
