@@ -77,5 +77,17 @@ public class GridWorld{
 			entity.update(this);
 		}	
 	}
+	
+	public void initialiseAICars(){
+		for(int x = 0; x < size.width; x++){
+			for(int y = 0; y < size.height; y++){
+				if(isRoadType(x, y)){
+					if(Math.random() > 0.25){
+						// TODO Add aicar
+					}
+				}
+			}
+		}
+	}
 
 }
