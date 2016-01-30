@@ -57,12 +57,6 @@ public class App
         frame.pack();
         
         frame.setVisible(true);
-        
-        while(true){
-        	world.update();
-        	Thread.sleep(2000);
-        	
-        }
     }
     
 	

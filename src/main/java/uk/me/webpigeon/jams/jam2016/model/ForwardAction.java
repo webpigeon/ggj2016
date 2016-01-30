@@ -13,22 +13,22 @@ public class ForwardAction extends AbstractAction {
 	@Override
 	public void apply(World world, Entity entity) {
 		Vector2D currentPos = entity.getPosition();
-		Vector2D facing = entity.getFacing();
+//		Vector2D facing = entity.getFacing();
 		
-		switch(facing) {
-			case NORTH:
-				currentPos.y -= 1;
-				break;
-			case SOUTH:
-				currentPos.y += 1;
-				break;
-			case EAST:
-				currentPos.x += 1;
-				break;
-			case WEST:
-				currentPos.x -= 1;
-				break;
-		}
+//		switch(facing) {
+//			case NORTH:
+//				currentPos.y -= 1;
+//				break;
+//			case SOUTH:
+//				currentPos.y += 1;
+//				break;
+//			case EAST:
+//				currentPos.x += 1;
+//				break;
+//			case WEST:
+//				currentPos.x -= 1;
+//				break;
+//		}
 	}
 
 }
