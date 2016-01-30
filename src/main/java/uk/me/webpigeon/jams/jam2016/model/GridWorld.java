@@ -7,6 +7,7 @@ import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
 
+import uk.me.webpigeon.jams.jam2016.model.entities.AICar;
 import uk.me.webpigeon.jams.jam2016.model.entities.Entity;
 
 public class GridWorld{
@@ -82,8 +83,9 @@ public class GridWorld{
 		for(int x = 0; x < size.width; x++){
 			for(int y = 0; y < size.height; y++){
 				if(isRoadType(x, y)){
-					if(Math.random() > 0.25){
+					if(Math.random() > 0.75){
 						// TODO Add aicar
+						addEntity(new AICar(new Vector2D(x, y)));
 					}
 				}
 			}

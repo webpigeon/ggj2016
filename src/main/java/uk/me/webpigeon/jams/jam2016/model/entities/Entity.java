@@ -39,8 +39,8 @@ public class Entity {
 	 * @param graphics
 	 */
 	public void draw(Graphics2D graphics){
-		graphics.setColor(Color.GREEN);
-		graphics.fillOval(location.getX() - 5, location.getY() - 5, 10, 10);
+		graphics.setColor(Color.BLUE);
+		graphics.fillOval(location.getX() * 32 - 16, location.getY() * 32 - 16, 32, 32);
 	}
 
 	public Vector2D getPosition() {
