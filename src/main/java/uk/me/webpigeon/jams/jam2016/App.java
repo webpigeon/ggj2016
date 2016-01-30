@@ -50,15 +50,10 @@ public class App
         
         box.add(new JList<Action>(actionModel));
         
-<<<<<<< HEAD
         frame.add(world);
         frame.add(new ButtonPanel(actionModel), BorderLayout.WEST);
-        frame.add(new JList<String>(actionModel), BorderLayout.EAST);
-=======
-        frame.add(new GridRenderer(world));
         frame.add(buttons, BorderLayout.WEST);
         frame.add(box, BorderLayout.EAST);
->>>>>>> fa5d3193e385cfd2aa8a64224d0082f2912f243d
         frame.pack();
         
         frame.setVisible(true);
