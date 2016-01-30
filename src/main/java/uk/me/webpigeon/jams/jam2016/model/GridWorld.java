@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import uk.me.webpigeon.jams.jam2016.model.entities.AICar;
@@ -99,7 +100,7 @@ public class GridWorld{
 		for(int x = 0; x < size.width; x++){
 			for(int y = 0; y < size.height; y++){
 				if(isRoadType(x, y)){
-					if(Math.random() > 0.75){
+					if(Math.random() > 0.95){
 						// TODO Add aicar
 						addEntity(new AICar(new Vector2D(x, y)));
 					}
@@ -108,17 +109,36 @@ public class GridWorld{
 		}
 	}
 	
-	public Entity getEntityAt(int x, int y) {
-		for (Entity entity : entities) {
+	public Collection<Entity> getEntityAt(int x, int y) {
+		Collection<Entity> entities = new ArrayList<Entity>();
+		System.out.println("entity check called");
+		
+		for (Entity entity : this.entities) {
 			if (entity.isAt(x,y)) {
-				return entity;
+				System.out.println(x+","+y);
+				entities.add(entity);
+			} else {
+				System.out.println(x+","+y+" "+entity.getPosition());
 			}
 		}
-		return null;
+		return entities;
 	}
 
 	public int getScore() {
 		return score;
+	}
+
+	public void incrementScore() {
+		this.score++;
+	}
+
+	public boolean isViable(Vector2D nextPos) {
+		if (!isRoadType(nextPos)){
+			return false;
+		}
+		
+		Collection<Entity> entities = getEntityAt(nextPos.getX(), nextPos.getY());
+		return entities.isEmpty();
 	}
 
 }

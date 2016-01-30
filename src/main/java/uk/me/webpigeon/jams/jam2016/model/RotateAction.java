@@ -5,7 +5,7 @@ import uk.me.webpigeon.jams.jam2016.model.entities.Entity;
 public class RotateAction extends AbstractAction {
 
 	public RotateAction() {
-		super("RotateRight");
+		super("Turn Right");
 	}
 
 	public void apply(GridWorld world, Entity entity) {

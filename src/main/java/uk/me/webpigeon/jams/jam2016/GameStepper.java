@@ -32,10 +32,9 @@ public class GameStepper implements Runnable {
 			stack.lock();
 		}
 		
-		try {
-			int i = 0;				
+		try {			
 			while( stack.hasMoreActions() || interactive ) {
-				if(list != null) list.setSelectedIndex(i++);
+				if(list != null) list.setSelectedIndex(stack.getCurrentAction());
 				doTick();
 				Thread.sleep(1000);
 			}
@@ -47,8 +46,6 @@ public class GameStepper implements Runnable {
 		
 		if (world.hasPlayerWon()) {
 			JOptionPane.showMessageDialog(frame, "You win");
-		} else {
-			//JOptionPane.showMessageDialog(frame, "You lose");
 		}
 		
 		if (!interactive) {

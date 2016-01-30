@@ -1,5 +1,7 @@
 package uk.me.webpigeon.jams.jam2016.model.entities;
 
+import java.awt.Color;
+import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -18,28 +20,47 @@ public class AICar  extends Entity{
 	public void update(GridWorld world){
 		
 		Vector2D nextPos = location.add(facing.getVector());
-		if(world.isRoadType(nextPos) && Math.random() > 0.2){
+		if (world.isViable(nextPos)) {
+			System.out.println(world.isViable(nextPos));
 			location = nextPos;
 			return;
 		}
-		Vector2D leftPos = location.add(facing.getVector().rotate90());
-		Vector2D rightPos = location.add(facing.getVector().rotate90().rotate90().rotate90());
-		Vector2D backPos = location.add(facing.getVector().rotate90().rotate90());
 		
-		List<Vector2D> viablePlaces = new ArrayList<Vector2D>();
-		if(world.isRoadType(nextPos)) viablePlaces.add(nextPos);
-		if(world.isRoadType(leftPos)) viablePlaces.add(leftPos);
-		if(world.isRoadType(rightPos)) viablePlaces.add(rightPos);
+		Vector2D rightPos = location.add(facing.getRightDirection().getVector());
+		Vector2D leftPos = location.add(facing.getLeftDirection().getVector());
 		
-		if(viablePlaces.isEmpty()){
-			location = backPos;
-		}else{
-			Random random = new Random();
-			location = viablePlaces.get(random.nextInt(viablePlaces.size()));
-		}
+		if (world.isViable(leftPos)) {
+			System.out.println(world.isViable(leftPos));
+			facing = facing.getLeftDirection();
+			return;
+		} 
 		
-		if(location == leftPos) facing = facing.getLeftDirection();
-		if(location == rightPos) facing = facing.getRightDirection();
-		if(location == backPos) facing = facing.getBackDirection();		
+		if (world.isViable(rightPos)) {
+			System.out.println(world.isViable(rightPos));
+			facing = facing.getRightDirection();
+			return;
+		} 	
+	}
+	
+	@Override
+	public void draw(Graphics2D g) {
+		double degrees = (facing.ordinal() * Math.PI) / 2;
+		
+		g.setColor(Color.ORANGE);
+		g.drawRect(location.getX()*32, location.getY()*32, 32, 32);
+		
+		g.translate(location.getX()*32+16, location.getY()*32+16);
+		g.rotate(degrees);
+		
+		int padx = 4;
+		
+		g.setColor(Color.ORANGE);
+		g.fillRect(-16+padx, -16, 32-(padx*2), 32);
+		
+		g.setColor(Color.CYAN);
+		g.fillRect(-16+padx, -13, 32-(padx*2), 16);
+		
+		g.rotate(-degrees);
+		g.translate(-location.getX()*32-16, -location.getY()*32-16);
 	}
 }
