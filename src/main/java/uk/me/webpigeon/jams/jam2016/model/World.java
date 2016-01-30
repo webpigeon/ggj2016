@@ -85,4 +85,8 @@ public class World extends JComponent {
 		System.out.println(totalScore);
 	}
 
+	public int getGlobalScore() {
+		return totalScore;
+	}
+
 }

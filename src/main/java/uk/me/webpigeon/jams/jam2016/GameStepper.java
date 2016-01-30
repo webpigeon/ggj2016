@@ -72,8 +72,12 @@ public class GameStepper implements Runnable {
 			int levelScore = world.getLevelScore() + bonus;
 			world.updateGlobalScore(levelScore);
 
-			JOptionPane.showMessageDialog(frame, "You win: " + levelScore);
-			loadWorld();
+			if (currLevel < levels.length) {
+				JOptionPane.showMessageDialog(frame, "You win: " + levelScore);
+				loadWorld();	
+			} else {
+				JOptionPane.showMessageDialog(frame, "Game Over : " + world.getGlobalScore());
+			}
 		}
 
 		if (!interactive) {
