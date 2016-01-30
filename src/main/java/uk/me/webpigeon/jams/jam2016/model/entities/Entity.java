@@ -2,6 +2,9 @@ package uk.me.webpigeon.jams.jam2016.model.entities;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Point;
+
+import uk.me.webpigeon.jams.jam2016.model.Direction;
 
 import uk.me.webpigeon.jams.jam2016.model.Vector2D;
 
@@ -13,9 +16,15 @@ import uk.me.webpigeon.jams.jam2016.model.Vector2D;
  *
  */
 public class Entity {
-	
 	// Location in grid co-ordinates
 	protected Vector2D location;
+
+	protected Vector2D facing;
+	
+	public Entity() {
+		this.location = new Vector2D(0,0);
+		this.facing = Vector2D.UP;
+	}
 
 	/**
 	 * This is the update function
@@ -31,5 +40,13 @@ public class Entity {
 	public void draw(Graphics2D graphics){
 		graphics.setColor(Color.GREEN);
 		graphics.fillOval(location.getX() - 5, location.getY() - 5, 10, 10);
+	}
+
+	public Vector2D getPosition() {
+		return location;
+	}
+
+	public Vector2D getFacing() {
+		return facing;
 	}
 }
