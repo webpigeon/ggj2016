@@ -16,7 +16,12 @@ public class AICar  extends Entity{
 	
 	@Override
 	public void update(GridWorld world){
+		
 		Vector2D nextPos = location.add(facing.getVector());
+		if(world.isRoadType(nextPos) && Math.random() > 0.2){
+			location = nextPos;
+			return;
+		}
 		Vector2D leftPos = location.add(facing.getVector().rotate90());
 		Vector2D rightPos = location.add(facing.getVector().rotate90().rotate90().rotate90());
 		Vector2D backPos = location.add(facing.getVector().rotate90().rotate90());
