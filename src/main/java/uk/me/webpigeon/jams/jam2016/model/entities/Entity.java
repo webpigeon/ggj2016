@@ -3,6 +3,8 @@ package uk.me.webpigeon.jams.jam2016.model.entities;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
+import uk.me.webpigeon.jams.jam2016.model.Vector2D;
+
 /**
  * This is an entity
  * 
@@ -13,7 +15,7 @@ import java.awt.Graphics2D;
 public class Entity {
 	
 	// Location in grid co-ordinates
-	int x, y;
+	protected Vector2D location;
 
 	/**
 	 * This is the update function
@@ -28,6 +30,6 @@ public class Entity {
 	 */
 	public void draw(Graphics2D graphics){
 		graphics.setColor(Color.GREEN);
-		graphics.fillOval(5, 5, 100, 100);
+		graphics.fillOval(location.getX() - 5, location.getY() - 5, 10, 10);
 	}
 }

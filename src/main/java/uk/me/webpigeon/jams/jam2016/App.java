@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JList;
 
 import uk.me.webpigeon.jams.jam2016.model.GridWorld;
+import uk.me.webpigeon.jams.jam2016.model.World;
 
 /**
  * Hello world!
@@ -15,7 +16,7 @@ import uk.me.webpigeon.jams.jam2016.model.GridWorld;
  */
 public class App 
 {
-    public static void main( String[] args )
+    public static void main( String[] args ) throws Exception
     {
         System.out.println( "Hello World!" );
         System.out.println("Strawberry");
@@ -27,15 +28,21 @@ public class App
         frame.setPreferredSize(new Dimension(800, 600));
         
         
-        GridWorld world = MapLoader.loadWorld("chess");
+        GridWorld gridWorld = MapLoader.loadWorld("chess");
+        World world = new World(gridWorld);
         
         DefaultListModel<String> actionModel = new DefaultListModel<String>();
         
-        frame.add(new GridRenderer(world));
+        frame.add(new GridRenderer(gridWorld));
         frame.add(new ButtonPanel(actionModel), BorderLayout.WEST);
         frame.add(new JList<String>(actionModel), BorderLayout.EAST);
         frame.pack();
         
         frame.setVisible(true);
+        
+        while(true){
+        	world.update();
+        	Thread.sleep(2000);
+        }
     }
 }
