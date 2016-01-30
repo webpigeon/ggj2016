@@ -28,6 +28,10 @@ public class World extends JComponent{
 		this.gridWorld = gridWorld;
 	}
 	
+	public boolean hasPlayerWon() {
+		return gridWorld.getScore() == 1;
+	}
+	
 	/**
 	 * Do the update for the world - Game loop can call this
 	 */
@@ -49,10 +53,6 @@ public class World extends JComponent{
 		
 		Graphics2D g2 = (Graphics2D)graphics;
 		gridWorld.render(g2);
-	}
-
-	public boolean isGameOver() {
-		return false;
 	}
 
 }

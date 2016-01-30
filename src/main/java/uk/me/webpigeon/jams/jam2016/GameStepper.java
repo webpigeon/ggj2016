@@ -13,6 +13,7 @@ public class GameStepper implements Runnable {
 	private JFrame frame;
 	private Thread thread;
 	private JList list;
+	private boolean interactive;
 	
 	public GameStepper(JFrame frame, World world, ActionStack stack) {
 		this.stack = stack;
@@ -27,9 +28,13 @@ public class GameStepper implements Runnable {
 	}
 
 	public void run() {
+		if (!interactive) {
+			stack.lock();
+		}
+		
 		try {
-			int i = 0;
-			while(!world.isGameOver() && stack.hasMoreActions() ) {
+			int i = 0;				
+			while( stack.hasMoreActions() || interactive ) {
 				if(list != null) list.setSelectedIndex(i++);
 				doTick();
 				Thread.sleep(1000);
@@ -40,11 +45,20 @@ public class GameStepper implements Runnable {
 			JOptionPane.showMessageDialog(frame, ex.getMessage());
 		}
 		
+		if (world.hasPlayerWon()) {
+			JOptionPane.showMessageDialog(frame, "You win");
+		} else {
+			//JOptionPane.showMessageDialog(frame, "You lose");
+		}
 		
+		if (!interactive) {
+			stack.unlock();
+		}
 	}
 
 	public void runSimulation() {
 		if (thread == null || !thread.isAlive()) {
+			setInteractive(false);
 			thread = new Thread(this);
 			thread.start();
 		}
@@ -57,6 +71,20 @@ public class GameStepper implements Runnable {
 	
 	public void setList(JList list){
 		this.list = list;
+	}
+
+
+	public void runInteractive() {
+		if (thread == null || !thread.isAlive()) {
+			setInteractive(true);
+			thread = new Thread(this);
+			thread.start();
+		}
+	}
+
+
+	private void setInteractive(boolean b) {
+		this.interactive = b;
 	}
 
 }

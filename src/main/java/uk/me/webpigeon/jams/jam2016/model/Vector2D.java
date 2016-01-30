@@ -46,4 +46,8 @@ public class Vector2D {
 		return new Vector2D(y, -x);
 	}
 
+	public String toString() {
+		return x+","+y;
+	}
+	
 }

@@ -16,6 +16,8 @@ public class GridWorld{
 	private Point player;
 	
 	private List<Entity> entities = new ArrayList<Entity>();
+	private int score;
+	
 	
 	private Color[] types = {
 			Color.GREEN,
@@ -28,6 +30,7 @@ public class GridWorld{
 		this.grid = new int[width][height];
 		this.player = new Point(0,0);
 		this.entities = new ArrayList<Entity>();
+		this.score = 0;
 	}
 	
 	public void addEntity(Entity entity) {
@@ -62,6 +65,9 @@ public class GridWorld{
 				
 				g.setColor(types[type]);
 				g.fillRect(x*32, y*32, 32, 32);
+				
+				g.setColor(Color.BLACK);
+				g.drawRect(x*32, y*32, 32, 32);
 			}
 		}
 		
@@ -71,6 +77,10 @@ public class GridWorld{
 	}
 	
 	public boolean isRoadType(int x, int y){
+		if (x < 0 || y < 0 || x>= size.width || y >= size.height) {
+			return false;
+		}
+		
 		int type = getTileType(x,y);
 		return type == 1 || type == 2;
 	}
@@ -96,6 +106,19 @@ public class GridWorld{
 				}
 			}
 		}
+	}
+	
+	public Entity getEntityAt(int x, int y) {
+		for (Entity entity : entities) {
+			if (entity.isAt(x,y)) {
+				return entity;
+			}
+		}
+		return null;
+	}
+
+	public int getScore() {
+		return score;
 	}
 
 }
