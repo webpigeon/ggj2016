@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 
 import uk.me.webpigeon.jams.jam2016.model.Vector2D;
+import uk.me.webpigeon.jams.jam2016.model.World;
 
 public class ParkedCar extends Entity {
 
@@ -17,7 +18,7 @@ public class ParkedCar extends Entity {
 		int padx = 4;
 		
 		g.setColor(Color.RED);
-		g.fillRect(location.getX()*32+padx, location.getY()*32, 32-(padx*2), 32);
+		g.fillRect(location.getX()*World.TILE_SIZE+padx, location.getY()*World.TILE_SIZE, World.TILE_SIZE-(padx*2), World.TILE_SIZE);
 	}
 	
 }

@@ -65,10 +65,10 @@ public class GridWorld{
 				int type = grid[x][y];
 				
 				g.setColor(types[type]);
-				g.fillRect(x*32, y*32, 32, 32);
+				g.fillRect(x*World.TILE_SIZE, y*World.TILE_SIZE, World.TILE_SIZE, World.TILE_SIZE);
 				
 				g.setColor(Color.BLACK);
-				g.drawRect(x*32, y*32, 32, 32);
+				g.drawRect(x*World.TILE_SIZE, y*World.TILE_SIZE, World.TILE_SIZE, World.TILE_SIZE);
 			}
 		}
 		
@@ -111,14 +111,11 @@ public class GridWorld{
 	
 	public Collection<Entity> getEntityAt(int x, int y) {
 		Collection<Entity> entities = new ArrayList<Entity>();
-		System.out.println("entity check called");
 		
 		for (Entity entity : this.entities) {
 			if (entity.isAt(x,y)) {
-				System.out.println(x+","+y);
 				entities.add(entity);
 			} else {
-				System.out.println(x+","+y+" "+entity.getPosition());
 			}
 		}
 		return entities;

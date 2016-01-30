@@ -9,6 +9,7 @@ import java.util.Random;
 import uk.me.webpigeon.jams.jam2016.model.Direction;
 import uk.me.webpigeon.jams.jam2016.model.GridWorld;
 import uk.me.webpigeon.jams.jam2016.model.Vector2D;
+import uk.me.webpigeon.jams.jam2016.model.World;
 
 public class AICar  extends Entity{
 	
@@ -46,21 +47,25 @@ public class AICar  extends Entity{
 	public void draw(Graphics2D g) {
 		double degrees = (facing.ordinal() * Math.PI) / 2;
 		
-		g.setColor(Color.ORANGE);
-		g.drawRect(location.getX()*32, location.getY()*32, 32, 32);
+		int graphicalX = location.getX() * World.TILE_SIZE;
+		int graphicalY = location.getY() * World.TILE_SIZE;
+		int halfSize = World.TILE_SIZE/2;
 		
-		g.translate(location.getX()*32+16, location.getY()*32+16);
+		g.setColor(Color.ORANGE);
+		g.drawRect(graphicalX, graphicalY, World.TILE_SIZE, World.TILE_SIZE);
+		
+		g.translate(graphicalX+halfSize, graphicalY+halfSize);
 		g.rotate(degrees);
 		
 		int padx = 4;
 		
 		g.setColor(Color.ORANGE);
-		g.fillRect(-16+padx, -16, 32-(padx*2), 32);
+		g.fillRect(-halfSize+padx, -halfSize, World.TILE_SIZE-(padx*2),World.TILE_SIZE);
 		
 		g.setColor(Color.CYAN);
 		g.fillRect(-16+padx, -13, 32-(padx*2), 16);
 		
 		g.rotate(-degrees);
-		g.translate(-location.getX()*32-16, -location.getY()*32-16);
+		g.translate(-graphicalX-halfSize, -graphicalY-halfSize);
 	}
 }

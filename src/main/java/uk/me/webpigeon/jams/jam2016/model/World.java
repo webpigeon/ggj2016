@@ -1,6 +1,7 @@
 package uk.me.webpigeon.jams.jam2016.model;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
@@ -20,12 +21,14 @@ import javax.swing.JComponent;
  *
  */
 public class World extends JComponent{
+	public static final Integer TILE_SIZE = 64;
 	
 	// Contains the grid itself
 	private GridWorld gridWorld;
 	
 	public World(GridWorld gridWorld){
 		this.gridWorld = gridWorld;
+		this.setPreferredSize(new Dimension(gridWorld.getWidth()*TILE_SIZE, gridWorld.getHeight()*TILE_SIZE));
 	}
 	
 	public boolean hasPlayerWon() {
@@ -49,7 +52,7 @@ public class World extends JComponent{
 	@Override
 	public void paintComponent(Graphics graphics){
 		graphics.setColor(Color.RED);
-		graphics.drawString("Strawberry", 50, 50);
+		graphics.fillRect(0, 0, getWidth(), getHeight());
 		
 		Graphics2D g2 = (Graphics2D)graphics;
 		gridWorld.render(g2);

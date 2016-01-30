@@ -9,6 +9,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JList;
+import javax.swing.JScrollPane;
 import javax.swing.JToolBar;
 
 import uk.me.webpigeon.jams.jam2016.model.Action;
@@ -65,7 +66,7 @@ public class App
         stepper.setList(list);
         box.add(list);
         
-        frame.add(world);
+        frame.add(new JScrollPane(world));
         frame.add(new ButtonPanel(actionModel), BorderLayout.WEST);
         frame.add(buttons, BorderLayout.WEST);
         frame.add(box, BorderLayout.EAST);
