@@ -11,6 +11,9 @@ import java.awt.Graphics2D;
  *
  */
 public class Entity {
+	
+	// Location in grid co-ordinates
+	int x, y;
 
 	/**
 	 * This is the update function
