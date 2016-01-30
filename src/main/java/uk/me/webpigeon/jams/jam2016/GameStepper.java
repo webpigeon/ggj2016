@@ -82,9 +82,12 @@ public class GameStepper implements Runnable {
 	}
 	
 	public void loadWorld() {
+		stack.unlock();
+		
 		GridWorld nextWorld = MapLoader.loadWorld(levels[currLevel++]);
 		MapLoader.buildWorld(nextWorld, stack);
 		world.setWorld(nextWorld);
+		stack.clear();
 	}
 
 	public void runSimulation() {
