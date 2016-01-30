@@ -33,4 +33,8 @@ public class World {
 		graphics.drawString("Strawberry", 50, 50);
 	}
 
+	public boolean isGameOver() {
+		return false;
+	}
+
 }

@@ -2,6 +2,7 @@ package uk.me.webpigeon.jams.jam2016;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.event.ActionListener;
 
 import javax.swing.Box;
 import javax.swing.DefaultListModel;
@@ -11,6 +12,7 @@ import javax.swing.JList;
 import javax.swing.JToolBar;
 
 import uk.me.webpigeon.jams.jam2016.model.Action;
+import uk.me.webpigeon.jams.jam2016.model.ActionStack;
 import uk.me.webpigeon.jams.jam2016.model.ForwardAction;
 import uk.me.webpigeon.jams.jam2016.model.GridWorld;
 
@@ -34,15 +36,15 @@ public class App
         
         GridWorld world = MapLoader.loadWorld("chess");
         
-        Box box = Box.createVerticalBox();
-        JToolBar toolbar = new JToolBar();
-        toolbar.add(new JButton("run"));
-        toolbar.add(new JButton("clear"));
-        box.add(toolbar);
         
-        DefaultListModel<Action> actionModel = new DefaultListModel<Action>();
+        ActionStack actionModel = new ActionStack();
         ButtonPanel buttons = new ButtonPanel(actionModel);
         buttons.addLegalAction(new ForwardAction());
+        
+        Box box = Box.createVerticalBox();
+        JToolBar toolbar = new JToolBar();
+        toolbar.add(App.buildButton("run", new GameStepControls(new GameStepper(world, actionModel))));
+        box.add(toolbar);
         
         box.add(new JList<Action>(actionModel));
         
@@ -53,4 +55,12 @@ public class App
         
         frame.setVisible(true);
     }
+    
+	
+	public static JButton buildButton(String text, ActionListener listener) {
+		JButton btn = new JButton(text);
+		btn.setActionCommand(text);
+		btn.addActionListener(listener);
+		return btn;
+	}
 }

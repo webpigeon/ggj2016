@@ -11,39 +11,33 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import uk.me.webpigeon.jams.jam2016.model.Action;
+import uk.me.webpigeon.jams.jam2016.model.ActionStack;
 
 public class ButtonPanel extends JPanel implements ActionListener {
-	private DefaultListModel<Action> model;
+	private ActionStack model;
 	private Map<String, Action> actionMap;
 	
 	
-	public ButtonPanel(DefaultListModel<Action> actionModel){
+	public ButtonPanel(ActionStack actionModel){
 		super();
 		this.model = actionModel;
 		this.actionMap = new HashMap<String, Action>();
 		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
-		add(buildButton("Forwards", this));
-		add(buildButton("backwards", this));
-		add(buildButton("Rotate 90", this));
-		add(buildButton("Rotate 180", this));
+		add(App.buildButton("Forwards", this));
+		add(App.buildButton("backwards", this));
+		add(App.buildButton("Rotate 90", this));
+		add(App.buildButton("Rotate 180", this));
 	}
 	
 	public void addLegalAction(Action action){
 		actionMap.put(action.getName(), action);
-	}
-	
-	private static JButton buildButton(String text, ActionListener listener) {
-		JButton btn = new JButton(text);
-		btn.setActionCommand(text);
-		btn.addActionListener(listener);
-		return btn;
 	}
 
 	public void actionPerformed(ActionEvent arg0) {
 		System.out.println("clicked "+arg0.getActionCommand());
 		Action action = actionMap.get(arg0.getActionCommand());
 		if (action != null) {
-			model.addElement(action);
+			model.add(action);
 		}
 	}
 
