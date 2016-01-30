@@ -3,6 +3,7 @@ package uk.me.webpigeon.jams.jam2016.model.entities;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
+import uk.me.webpigeon.jams.jam2016.model.ImageGallery;
 import uk.me.webpigeon.jams.jam2016.model.Vector2D;
 import uk.me.webpigeon.jams.jam2016.model.World;
 
@@ -14,7 +15,7 @@ public class ParkedCar extends Entity {
 	}
 	
 	@Override
-	public void draw(Graphics2D g) {
+	public void draw(Graphics2D g, ImageGallery ig) {
 		int padx = 4;
 		
 		g.setColor(Color.RED);

@@ -2,11 +2,13 @@ package uk.me.webpigeon.jams.jam2016.model.entities;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 import java.util.Collection;
 
 import uk.me.webpigeon.jams.jam2016.model.Action;
 import uk.me.webpigeon.jams.jam2016.model.ActionStack;
 import uk.me.webpigeon.jams.jam2016.model.GridWorld;
+import uk.me.webpigeon.jams.jam2016.model.ImageGallery;
 import uk.me.webpigeon.jams.jam2016.model.Vector2D;
 import uk.me.webpigeon.jams.jam2016.model.World;
 
@@ -43,7 +45,7 @@ public class PlayerCar extends Entity {
 	}
 	
 	@Override
-	public void draw(Graphics2D g) {
+	public void draw(Graphics2D g, ImageGallery ig) {
 		double degrees = (facing.ordinal() * Math.PI) / 2;
 		
 		int graphicalX = location.getX() * World.TILE_SIZE;
@@ -56,13 +58,11 @@ public class PlayerCar extends Entity {
 		g.translate(graphicalX+halfSize, graphicalY+halfSize);
 		g.rotate(degrees);
 		
-		int padx = 4;
+		BufferedImage car = ig.get(-99);
+		g.drawImage(car, -halfSize, -halfSize, null);
 		
-		g.setColor(Color.BLUE);
-		g.fillRect(-halfSize+padx, -halfSize, World.TILE_SIZE-(padx*2),World.TILE_SIZE);
-		
-		g.setColor(Color.CYAN);
-		g.fillRect(-16+padx, -13, 32-(padx*2), 16);
+		//g.setColor(Color.CYAN);
+		//g.fillRect(-16+padx, -13, 32-(padx*2), 16);
 		
 		g.rotate(-degrees);
 		g.translate(-graphicalX-halfSize, -graphicalY-halfSize);

@@ -78,7 +78,7 @@ public class GridWorld{
 		}
 		
 		for(Entity entity : entities){
-			entity.draw(g);
+			entity.draw(g, imageGallery);
 		}
 	}
 	
@@ -88,7 +88,7 @@ public class GridWorld{
 		}
 		
 		int type = getTileType(x,y);
-		return type == 1 || type == 2;
+		return type > 0;
 	}
 	
 	public boolean isRoadType(Vector2D location){

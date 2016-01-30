@@ -6,6 +6,7 @@ import java.util.Collection;
 
 import uk.me.webpigeon.jams.jam2016.model.Direction;
 import uk.me.webpigeon.jams.jam2016.model.GridWorld;
+import uk.me.webpigeon.jams.jam2016.model.ImageGallery;
 import uk.me.webpigeon.jams.jam2016.model.Vector2D;
 
 /**
@@ -39,15 +40,6 @@ public class Entity {
 		}
 		
 	}
-	
-	/**
-	 * This is the draw function
-	 * @param graphics
-	 */
-	public void draw(Graphics2D graphics){
-		graphics.setColor(Color.ORANGE);
-		graphics.fillRect(location.getX() * 32, location.getY() * 32, 32, 32);
-	}
 
 	public Vector2D getPosition() {
 		return location;
@@ -71,5 +63,10 @@ public class Entity {
 
 	public boolean isGoal() {
 		return false;
+	}
+
+	public void draw(Graphics2D g, ImageGallery ig) {
+		g.setColor(Color.ORANGE);
+		g.fillRect(location.getX() * 32, location.getY() * 32, 32, 32);
 	}
 }

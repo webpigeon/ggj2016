@@ -46,9 +46,9 @@ public class ImageGallery {
 	}
 	
 	public BufferedImage get(int index){
-		System.out.println("Asked for: " + index);
+		//System.out.println("Asked for: " + index);
 		if(images.containsKey(index)){
-			System.out.println("Image: " + index + " requested succesfully");
+			//System.out.println("Image: " + index + " requested succesfully");
 			return images.get(index);
 		}
 		return null;
