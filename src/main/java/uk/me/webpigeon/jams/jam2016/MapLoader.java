@@ -33,7 +33,6 @@ public class MapLoader {
 		for (int y = 0; y < height; y++) {
 			Scanner line = new Scanner(scanner.nextLine());
 			for (int x = 0; x < width; x++) {
-				System.out.println(x + "," + y);
 				world.setTileAt(x, y, line.nextInt());
 			}
 			line.close();

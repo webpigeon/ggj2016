@@ -43,10 +43,10 @@ public class App {
 	public static void runGame(JFrame frame) {
 		ActionStack actionModel = new ActionStack();
 		ButtonPanel buttons = new ButtonPanel(actionModel);
-		buttons.addLegalAction(new ForwardAction());
-		buttons.addLegalAction(new RotateAction());
-		buttons.addLegalAction(new RotateOtherLeftAction());
-		buttons.addLegalAction(new Wait());
+		buttons.addLegalAction("^",new ForwardAction());
+		buttons.addLegalAction(">",new RotateAction());
+		buttons.addLegalAction("<",new RotateOtherLeftAction());
+		buttons.addLegalAction("#",new Wait());
 
 		// build the world
 		World world = new World();
@@ -56,9 +56,9 @@ public class App {
 		Box box = Box.createVerticalBox();
 		JToolBar toolbar = new JToolBar();
 		toolbar.setFloatable(false);
-		toolbar.add(App.buildButton("run", new GameStepControls(stepper)));
-		toolbar.add(App.buildButton("clear", new GameStepControls(stepper)));
-		toolbar.add(App.buildButton("simulate", new GameStepControls(stepper)));
+		toolbar.add(App.buildButton("go","run", new GameStepControls(stepper)));
+		toolbar.add(App.buildButton("clear","clear", new GameStepControls(stepper)));
+		toolbar.add(App.buildButton("play","simulate", new GameStepControls(stepper)));
 		box.add(toolbar);
 		JList<Action> list = new JList<Action>(actionModel);
 		stepper.setList(list);
@@ -74,9 +74,10 @@ public class App {
 		frame.repaint();
 	}
 
-	public static JButton buildButton(String text, ActionListener listener) {
-		JButton btn = new JButton(text);
-		btn.setActionCommand(text);
+	public static JButton buildButton(String label, String cmd, ActionListener listener) {
+		JButton btn = new JButton(label);
+		btn.setToolTipText(cmd);
+		btn.setActionCommand(cmd);
 		btn.addActionListener(listener);
 		return btn;
 	}

@@ -20,7 +20,6 @@ public class AICar extends Entity {
 
 		Vector2D nextPos = location.add(facing.getVector());
 		if (world.isViable(nextPos)) {
-			System.out.println(world.isViable(nextPos));
 			location = nextPos;
 			return;
 		}
@@ -29,13 +28,11 @@ public class AICar extends Entity {
 		Vector2D leftPos = location.add(facing.getLeftDirection().getVector());
 
 		if (world.isViable(leftPos)) {
-			System.out.println(world.isViable(leftPos));
 			facing = facing.getLeftDirection();
 			return;
 		}
 
 		if (world.isViable(rightPos)) {
-			System.out.println(world.isViable(rightPos));
 			facing = facing.getRightDirection();
 			return;
 		}

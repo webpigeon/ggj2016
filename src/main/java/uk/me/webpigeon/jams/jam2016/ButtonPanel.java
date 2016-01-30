@@ -22,13 +22,12 @@ public class ButtonPanel extends JPanel implements ActionListener {
 		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 	}
 
-	public void addLegalAction(Action action) {
+	public void addLegalAction(String title, Action action) {
 		actionMap.put(action.getName(), action);
-		add(App.buildButton(action.getName(), this));
+		add(App.buildButton(title, action.getName(), this));
 	}
 
 	public void actionPerformed(ActionEvent arg0) {
-		System.out.println("clicked " + arg0.getActionCommand());
 		Action action = actionMap.get(arg0.getActionCommand());
 		if (action != null) {
 			model.add(action);

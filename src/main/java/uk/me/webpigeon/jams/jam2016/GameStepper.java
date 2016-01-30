@@ -29,7 +29,6 @@ public class GameStepper implements Runnable {
 	}
 
 	public void doTick() {
-		System.out.println("tick");
 		world.update();
 	}
 

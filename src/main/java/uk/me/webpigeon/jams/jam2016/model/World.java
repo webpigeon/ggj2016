@@ -38,7 +38,6 @@ public class World extends JComponent {
 	 * Do the update for the world - Game loop can call this
 	 */
 	public void update() {
-		System.out.println("Starting update loop");
 		gridWorld.update();
 		repaint();
 	}
@@ -82,7 +81,6 @@ public class World extends JComponent {
 
 	public void updateGlobalScore(int i) {
 		totalScore += i;
-		System.out.println(totalScore);
 	}
 
 	public int getGlobalScore() {
