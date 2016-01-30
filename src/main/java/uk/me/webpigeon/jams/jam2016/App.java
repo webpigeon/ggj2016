@@ -59,8 +59,9 @@ public class App
         toolbar.add(App.buildButton("run", new GameStepControls(stepper)));
         toolbar.add(App.buildButton("clear", new GameStepControls(stepper)));
         box.add(toolbar);
-        
-        box.add(new JList<Action>(actionModel));
+        JList<Action> list = new JList<Action>(actionModel);
+        stepper.setList(list);
+        box.add(list);
         
         frame.add(world);
         frame.add(new ButtonPanel(actionModel), BorderLayout.WEST);
