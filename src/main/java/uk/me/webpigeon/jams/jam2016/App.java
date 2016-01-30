@@ -33,7 +33,7 @@ public class App
         
         DefaultListModel<String> actionModel = new DefaultListModel<String>();
         
-        frame.add(new GridRenderer(gridWorld));
+        frame.add(world);
         frame.add(new ButtonPanel(actionModel), BorderLayout.WEST);
         frame.add(new JList<String>(actionModel), BorderLayout.EAST);
         frame.pack();
@@ -43,6 +43,7 @@ public class App
         while(true){
         	world.update();
         	Thread.sleep(2000);
+        	
         }
     }
 }

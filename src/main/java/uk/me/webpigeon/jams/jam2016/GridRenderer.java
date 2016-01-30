@@ -8,7 +8,7 @@ import javax.swing.JComponent;
 
 import uk.me.webpigeon.jams.jam2016.model.GridWorld;
 
-public class GridRenderer extends JComponent {
+public class GridRenderer {
 	private GridWorld world;
 	private Color[] types = {
 			Color.BLACK,
@@ -19,8 +19,8 @@ public class GridRenderer extends JComponent {
 		this.world = world;
 	}
 	
-	@Override
-	public void paintComponent(Graphics g) {
+	
+	public void draw(Graphics g) {
 		for (int x=0; x<world.getWidth(); x++) {
 			for (int y=0; y<world.getHeight(); y++) {
 				int type = world.getTileType(x,y);
