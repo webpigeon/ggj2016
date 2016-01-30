@@ -39,7 +39,7 @@ public class App
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setPreferredSize(new Dimension(800, 600));
         
-        GridWorld gridWorld = MapLoader.loadWorld("simple");
+        GridWorld gridWorld = MapLoader.loadWorld("large");
         World world = new World(gridWorld);
         
         
@@ -59,6 +59,7 @@ public class App
         JToolBar toolbar = new JToolBar();
         toolbar.add(App.buildButton("run", new GameStepControls(stepper)));
         toolbar.add(App.buildButton("clear", new GameStepControls(stepper)));
+        toolbar.add(App.buildButton("simulate", new GameStepControls(stepper)));
         box.add(toolbar);
         
         box.add(new JList<Action>(actionModel));

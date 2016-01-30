@@ -15,6 +15,8 @@ public class GameStepControls implements ActionListener {
 			stepper.reset();
 		} else if ("run".equals(e.getActionCommand())) {		
 			stepper.runSimulation();	
+		} else if ("simulate".equals(e.getActionCommand())) {		
+			stepper.runInteractive();	
 		}
 	}
 

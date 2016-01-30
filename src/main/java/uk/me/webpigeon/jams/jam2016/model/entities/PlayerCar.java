@@ -21,8 +21,10 @@ public class PlayerCar extends Entity {
 	public void update(GridWorld world) {
 		super.update(world);
 		
-		Action action = actions.nextAction();
-		action.apply(world, this);
+		if (actions.hasMoreActions()) {
+			Action action = actions.nextAction();
+			action.apply(world, this);
+		}
 	}
 	
 	@Override
