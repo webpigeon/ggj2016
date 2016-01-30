@@ -14,6 +14,7 @@ import uk.me.webpigeon.jams.jam2016.model.Direction;
  *
  */
 public class Entity {
+	// Location in grid co-ordinates
 	protected Point location;
 	protected Direction facing;
 	

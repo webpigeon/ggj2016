@@ -39,8 +39,11 @@ public class GridWorld extends World {
 
 	public void render(Graphics2D g) {
 		g.setColor(Color.BLUE);
-		g.fillRect(player.x*32+5, player.y*32, 32-10, 32);
-		
+		g.fillRect(player.x*32+5, player.y*32, 32-10, 32);		
+	}
+	
+	public boolean isRoadType(int x, int y){
+		return getTileType(x, y) == 1;
 	}
 
 }
