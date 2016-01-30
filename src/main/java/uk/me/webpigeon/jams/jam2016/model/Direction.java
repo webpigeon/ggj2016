@@ -2,9 +2,9 @@ package uk.me.webpigeon.jams.jam2016.model;
 
 public enum Direction {
 	NORTH(Vector2D.UP),
-	EAST(Vector2D.LEFT),
+	EAST(Vector2D.RIGHT),
 	SOUTH(Vector2D.DOWN),
-	WEST(Vector2D.RIGHT);
+	WEST(Vector2D.LEFT);
 
 	private final Vector2D direction;
 	

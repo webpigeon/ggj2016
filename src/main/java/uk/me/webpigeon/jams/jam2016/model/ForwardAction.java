@@ -17,7 +17,7 @@ public class ForwardAction extends AbstractAction {
 		if (world.isRoadType(currentPos.getX(), currentPos.getY())) {
 			entity.setPosition(currentPos);
 		} else {
-			throw new RuntimeException("You crashed");
+			throw new RuntimeException("You're now offroad (and voided warrenty) "+currentPos);
 		}
 	}
 

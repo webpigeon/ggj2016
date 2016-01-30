@@ -30,6 +30,11 @@ public class Entity {
 	 */
 	public void update(GridWorld world){
 		
+		Entity entity = world.getEntityAt(location.getX(), location.getY());
+		if (!entity.equals(this)) {
+			throw new RuntimeException("Crash!");
+		}
+		
 	}
 	
 	/**
@@ -37,8 +42,8 @@ public class Entity {
 	 * @param graphics
 	 */
 	public void draw(Graphics2D graphics){
-		graphics.setColor(Color.BLUE);
-		graphics.fillRect(location.getX() * 32 - 16, location.getY() * 32 - 16, 32, 32);
+		graphics.setColor(Color.ORANGE);
+		graphics.fillRect(location.getX() * 32, location.getY() * 32, 32, 32);
 	}
 
 	public Vector2D getPosition() {
@@ -55,5 +60,9 @@ public class Entity {
 
 	public void setFacing(Direction direction) {
 		this.facing = direction;
+	}
+
+	public boolean isAt(int x, int y) {
+		return location.getX() == x && location.getY() == y;
 	}
 }

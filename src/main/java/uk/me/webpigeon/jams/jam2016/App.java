@@ -16,6 +16,7 @@ import uk.me.webpigeon.jams.jam2016.model.ActionStack;
 import uk.me.webpigeon.jams.jam2016.model.ForwardAction;
 import uk.me.webpigeon.jams.jam2016.model.GridWorld;
 import uk.me.webpigeon.jams.jam2016.model.RotateAction;
+import uk.me.webpigeon.jams.jam2016.model.RotateOtherLeftAction;
 import uk.me.webpigeon.jams.jam2016.model.Wait;
 import uk.me.webpigeon.jams.jam2016.model.World;
 import uk.me.webpigeon.jams.jam2016.model.entities.ParkedCar;
@@ -39,7 +40,7 @@ public class App
         frame.setPreferredSize(new Dimension(800, 600));
         
         
-        GridWorld gridWorld = MapLoader.loadWorld("corner");
+        GridWorld gridWorld = MapLoader.loadWorld("simple");
         World world = new World(gridWorld);
         
         
@@ -47,6 +48,7 @@ public class App
         ButtonPanel buttons = new ButtonPanel(actionModel);
         buttons.addLegalAction(new ForwardAction());
         buttons.addLegalAction(new RotateAction());
+        buttons.addLegalAction(new RotateOtherLeftAction());
         buttons.addLegalAction(new Wait());
         
         gridWorld.addEntity(new PlayerCar(1, 9, actionModel));

@@ -29,7 +29,10 @@ public class PlayerCar extends Entity {
 	public void draw(Graphics2D g) {
 		double degrees = (facing.ordinal() * Math.PI) / 2;
 		
-		g.translate(location.getX()*32, location.getY()*32);
+		g.setColor(Color.BLUE);
+		g.drawRect(location.getX()*32, location.getY()*32, 32, 32);
+		
+		g.translate(location.getX()*32+16, location.getY()*32+16);
 		g.rotate(degrees);
 		
 		int padx = 4;
@@ -37,8 +40,11 @@ public class PlayerCar extends Entity {
 		g.setColor(Color.BLUE);
 		g.fillRect(-16+padx, -16, 32-(padx*2), 32);
 		
+		g.setColor(Color.CYAN);
+		g.fillRect(-16+padx, -13, 32-(padx*2), 16);
+		
 		g.rotate(-degrees);
-		g.translate(-location.getX()*32, -location.getY()*32);
+		g.translate(-location.getX()*32-16, -location.getY()*32-16);
 	}
 	
 	

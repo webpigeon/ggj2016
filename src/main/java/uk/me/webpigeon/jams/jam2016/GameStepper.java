@@ -26,7 +26,7 @@ public class GameStepper implements Runnable {
 
 	public void run() {
 		try {
-			while(!world.isGameOver() && stack.hasMoreActions() ) {
+			while(stack.hasMoreActions() ) {
 				doTick();
 				Thread.sleep(1000);
 			}
@@ -36,6 +36,11 @@ public class GameStepper implements Runnable {
 			JOptionPane.showMessageDialog(frame, ex.getMessage());
 		}
 		
+		if (world.hasPlayerWon()) {
+			JOptionPane.showMessageDialog(frame, "You win");
+		} else {
+			//JOptionPane.showMessageDialog(frame, "You lose");
+		}
 		
 	}
 
