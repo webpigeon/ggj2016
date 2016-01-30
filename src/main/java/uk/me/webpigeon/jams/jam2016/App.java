@@ -39,7 +39,7 @@ public class App
         frame.setPreferredSize(new Dimension(800, 600));
         
         
-        GridWorld gridWorld = MapLoader.loadWorld("corner");
+        GridWorld gridWorld = MapLoader.loadWorld("large");
         World world = new World(gridWorld);
         
         
