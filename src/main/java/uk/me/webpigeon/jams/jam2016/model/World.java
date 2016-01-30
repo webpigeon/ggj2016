@@ -25,6 +25,7 @@ public class World extends JComponent{
 	
 	// Contains the grid itself
 	private GridWorld gridWorld;
+	private int totalScore = 0;
 	
 	public World(GridWorld gridWorld){
 		this.gridWorld = gridWorld;
@@ -62,13 +63,22 @@ public class World extends JComponent{
 		this.gridWorld.addScore(score);
 	}
 
-	public int getScore() {
+	public int getLevelScore() {
 		return gridWorld.getScore();
 	}
 
 	public void setWorld(GridWorld nextWorld) {
 		gridWorld = nextWorld;
 		repaint();
+	}
+
+	public int getPar() {
+		return gridWorld.getPar();
+	}
+
+	public void updateGlobalScore(int i) {
+		totalScore += i;
+		System.out.println(totalScore);
 	}
 
 }

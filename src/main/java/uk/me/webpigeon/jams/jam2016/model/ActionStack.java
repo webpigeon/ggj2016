@@ -59,6 +59,10 @@ public class ActionStack implements ListModel<Action> {
 	}
 
 	public void clear() {
+		if (lock) {
+			return;
+		}
+		
 		int size = actions.size();
 		actions.clear();
 		current = 0;

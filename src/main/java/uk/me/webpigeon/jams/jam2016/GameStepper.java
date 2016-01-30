@@ -16,12 +16,20 @@ public class GameStepper implements Runnable {
 	private JList list;
 	private boolean interactive;
 	
+	private int totalActions;
+	private int currLevel;
+	private String levels[] = {
+		"simple",
+		"large"
+	};
+	
 	public GameStepper(JFrame frame, World world, ActionStack stack) {
 		this.stack = stack;
 		this.world = world;
 		this.frame = frame;
+		this.totalActions = 0;
+		this.currLevel = 0;
 	}
-	
 	
 	public void doTick() {
 		System.out.println("tick");
@@ -29,32 +37,45 @@ public class GameStepper implements Runnable {
 	}
 
 	public void run() {
-		int score = 0;
-		
 		if (!interactive) {
 			stack.lock();
 		}
 		
 		try {			
-			int numActions = 0;
+			int chainActions = 0;
 			while( stack.hasMoreActions() || interactive ) {
 				if(list != null) list.setSelectedIndex(stack.getCurrentAction());
-				numActions++;
+				chainActions++;
+				totalActions++;
 				doTick();
 				Thread.sleep(1000);
 			}
 			
-			score = numActions + numActions/4;
+			//calculate score
+			int score = 0;
+			if (chainActions < 3) {
+				score = chainActions;
+			} else {
+				score = chainActions + (chainActions-3);
+			}
 			world.addScore(score);
+			
 		} catch (InterruptedException ex) {
 			ex.printStackTrace();
 		} catch (RuntimeException ex) {
 			JOptionPane.showMessageDialog(frame, ex.getMessage());
+			world.updateGlobalScore(-10);
+			stack.unlock();
+			return;
 		}
 		
 		if (world.hasPlayerWon()) {
-			JOptionPane.showMessageDialog(frame, "You win: "+world.getScore());
-			GridWorld nextWorld = MapLoader.loadWorld("large");
+			int bonus = (world.getPar() - totalActions) * 4;
+			int levelScore = world.getLevelScore() + bonus;
+			world.updateGlobalScore(levelScore);
+			
+			JOptionPane.showMessageDialog(frame, "You win: "+levelScore);
+			GridWorld nextWorld = MapLoader.loadWorld(levels[currLevel++]);
 	        MapLoader.buildWorld(nextWorld, stack);
 	        world.setWorld(nextWorld);
 		}

@@ -21,6 +21,7 @@ public class GridWorld{
 	private ImageGallery imageGallery;
 	
 	private Vector2D spawnPoint;
+	private int par;
 	
 	
 	private Color[] types = {
@@ -39,6 +40,15 @@ public class GridWorld{
 		this.score = 0;
 		this.hasWon = false;
 		this.spawnPoint = null;
+		this.par = 0;
+	}
+	
+	public void setPar(int par) {
+		this.par = par;
+	}
+	
+	public int getPar() {
+		return par;
 	}
 	
 	public void addEntity(Entity entity) {

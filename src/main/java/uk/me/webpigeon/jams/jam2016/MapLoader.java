@@ -22,10 +22,12 @@ public class MapLoader {
 		int startX = scanner.nextInt();
 		int startY = scanner.nextInt();
 		int npcs = scanner.nextInt();
+		int par = scanner.nextInt();
 		scanner.nextLine();
 		
 		GridWorld world = new GridWorld(width, height);
 		world.setSpawnPoint(startX, startY);
+		world.setPar(par);
 
 		//load in the tiles
 		for (int y=0; y<height; y++) {
