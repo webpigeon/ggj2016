@@ -15,6 +15,7 @@ import uk.me.webpigeon.jams.jam2016.model.Action;
 import uk.me.webpigeon.jams.jam2016.model.ActionStack;
 import uk.me.webpigeon.jams.jam2016.model.ForwardAction;
 import uk.me.webpigeon.jams.jam2016.model.GridWorld;
+import uk.me.webpigeon.jams.jam2016.model.World;
 
 /**
  * Hello world!
@@ -22,7 +23,7 @@ import uk.me.webpigeon.jams.jam2016.model.GridWorld;
  */
 public class App 
 {
-    public static void main( String[] args )
+    public static void main( String[] args ) throws Exception
     {
         System.out.println( "Hello World!" );
         System.out.println("Strawberry");
@@ -34,7 +35,8 @@ public class App
         frame.setPreferredSize(new Dimension(800, 600));
         
         
-        GridWorld world = MapLoader.loadWorld("chess");
+        GridWorld gridWorld = MapLoader.loadWorld("chess");
+        World world = new World(gridWorld);
         
         
         ActionStack actionModel = new ActionStack();
@@ -48,12 +50,24 @@ public class App
         
         box.add(new JList<Action>(actionModel));
         
+<<<<<<< HEAD
+        frame.add(world);
+        frame.add(new ButtonPanel(actionModel), BorderLayout.WEST);
+        frame.add(new JList<String>(actionModel), BorderLayout.EAST);
+=======
         frame.add(new GridRenderer(world));
         frame.add(buttons, BorderLayout.WEST);
         frame.add(box, BorderLayout.EAST);
+>>>>>>> fa5d3193e385cfd2aa8a64224d0082f2912f243d
         frame.pack();
         
         frame.setVisible(true);
+        
+        while(true){
+        	world.update();
+        	Thread.sleep(2000);
+        	
+        }
     }
     
 	

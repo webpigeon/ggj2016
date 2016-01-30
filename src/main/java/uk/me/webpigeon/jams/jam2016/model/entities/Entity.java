@@ -6,6 +6,8 @@ import java.awt.Point;
 
 import uk.me.webpigeon.jams.jam2016.model.Direction;
 
+import uk.me.webpigeon.jams.jam2016.model.Vector2D;
+
 /**
  * This is an entity
  * 
@@ -15,12 +17,13 @@ import uk.me.webpigeon.jams.jam2016.model.Direction;
  */
 public class Entity {
 	// Location in grid co-ordinates
-	protected Point location;
-	protected Direction facing;
+	protected Vector2D location;
+
+	protected Vector2D facing;
 	
 	public Entity() {
-		this.location = new Point(0,0);
-		this.facing = Direction.NORTH;
+		this.location = new Vector2D(0,0);
+		this.facing = Vector2D.UP;
 	}
 
 	/**
@@ -36,14 +39,14 @@ public class Entity {
 	 */
 	public void draw(Graphics2D graphics){
 		graphics.setColor(Color.GREEN);
-		graphics.fillOval(5, 5, 100, 100);
+		graphics.fillOval(location.getX() - 5, location.getY() - 5, 10, 10);
 	}
 
-	public Point getPosition() {
-		return new Point(location);
+	public Vector2D getPosition() {
+		return location;
 	}
 
-	public Direction getFacing() {
+	public Vector2D getFacing() {
 		return facing;
 	}
 }

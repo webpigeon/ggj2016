@@ -5,7 +5,7 @@ import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.Point;
 
-public class GridWorld extends World {
+public class GridWorld{
 	private Dimension size;
 	private int[][] grid;
 	private Point player;

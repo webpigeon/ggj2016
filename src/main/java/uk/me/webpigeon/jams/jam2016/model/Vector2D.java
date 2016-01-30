@@ -33,5 +33,13 @@ public class Vector2D {
 	public double distanceBetween(Vector2D other){
 		return Math.hypot(x - other.x, y - other.y);
 	}
+	
+	public int getX(){
+		return x;
+	}
+	
+	public int getY(){
+		return y;
+	}
 
 }
