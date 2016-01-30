@@ -9,8 +9,7 @@ public class AbstractAction implements Action {
 		this.name = name;
 	}
 
-	public void apply(World world, Entity entity) {
-		// TODO Auto-generated method stub
+	public void apply(GridWorld world, Entity entity) {
 		
 	}
 	

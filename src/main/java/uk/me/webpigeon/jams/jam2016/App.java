@@ -16,6 +16,7 @@ import uk.me.webpigeon.jams.jam2016.model.ActionStack;
 import uk.me.webpigeon.jams.jam2016.model.ForwardAction;
 import uk.me.webpigeon.jams.jam2016.model.GridWorld;
 import uk.me.webpigeon.jams.jam2016.model.World;
+import uk.me.webpigeon.jams.jam2016.model.entities.PlayerCar;
 
 /**
  * Hello world!
@@ -35,13 +36,15 @@ public class App
         frame.setPreferredSize(new Dimension(800, 600));
         
         
-        GridWorld gridWorld = MapLoader.loadWorld("chess");
+        GridWorld gridWorld = MapLoader.loadWorld("corner");
         World world = new World(gridWorld);
         
         
         ActionStack actionModel = new ActionStack();
         ButtonPanel buttons = new ButtonPanel(actionModel);
         buttons.addLegalAction(new ForwardAction());
+        
+        gridWorld.addEntity(new PlayerCar(actionModel));
         
         Box box = Box.createVerticalBox();
         JToolBar toolbar = new JToolBar();

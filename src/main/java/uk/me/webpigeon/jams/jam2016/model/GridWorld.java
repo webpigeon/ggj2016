@@ -17,8 +17,8 @@ public class GridWorld{
 	private List<Entity> entities = new ArrayList<Entity>();
 	
 	private Color[] types = {
-			Color.BLACK,
-			Color.WHITE
+			Color.GREEN,
+			Color.BLACK
 	};
 	
 	public GridWorld(int width, int height) {
@@ -26,6 +26,10 @@ public class GridWorld{
 		this.grid = new int[width][height];
 		this.player = new Point(0,0);
 		this.entities = new ArrayList<Entity>();
+	}
+	
+	public void addEntity(Entity entity) {
+		entities.add(entity);
 	}
 
 	public void setTileAt(int x, int y, int tid) {
@@ -60,7 +64,7 @@ public class GridWorld{
 		}
 		
 		for(Entity entity : entities){
-			entity.update();
+			entity.draw(g);
 		}
 	}
 	
@@ -70,7 +74,7 @@ public class GridWorld{
 
 	public void update() {
 		for(Entity entity : entities){
-			entity.update();
+			entity.update(this);
 		}	
 	}
 

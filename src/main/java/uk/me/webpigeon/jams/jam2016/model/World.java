@@ -8,8 +8,6 @@ import java.util.List;
 
 import javax.swing.JComponent;
 
-import uk.me.webpigeon.jams.jam2016.model.entities.Entity;
-
 /**
  * This is the world object.
  * 
@@ -36,6 +34,7 @@ public class World extends JComponent{
 	public void update(){
 		System.out.println("Starting update loop");
 		gridWorld.update();
+		repaint();
 	}
 	
 	/**

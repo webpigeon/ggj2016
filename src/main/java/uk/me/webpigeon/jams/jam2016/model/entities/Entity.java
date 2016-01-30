@@ -5,7 +5,9 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 
 import uk.me.webpigeon.jams.jam2016.model.Direction;
+import uk.me.webpigeon.jams.jam2016.model.GridWorld;
 import uk.me.webpigeon.jams.jam2016.model.Vector2D;
+import uk.me.webpigeon.jams.jam2016.model.World;
 
 /**
  * This is an entity
@@ -28,7 +30,7 @@ public class Entity {
 	/**
 	 * This is the update function
 	 */
-	public void update(){
+	public void update(GridWorld world){
 		
 	}
 	
@@ -47,5 +49,9 @@ public class Entity {
 
 	public Direction getFacing() {
 		return facing;
+	}
+
+	public void setPosition(Vector2D location) {
+		this.location = location;
 	}
 }
