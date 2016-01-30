@@ -2,6 +2,7 @@ package uk.me.webpigeon.jams.jam2016.model.entities;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.util.Collection;
 
 import uk.me.webpigeon.jams.jam2016.model.Direction;
 import uk.me.webpigeon.jams.jam2016.model.GridWorld;
@@ -30,9 +31,11 @@ public class Entity {
 	 */
 	public void update(GridWorld world){
 		
-		Entity entity = world.getEntityAt(location.getX(), location.getY());
-		if (!entity.equals(this)) {
-			throw new RuntimeException("Crash!");
+		Collection<Entity> entities = world.getEntityAt(location.getX(), location.getY());
+		for (Entity entity : entities) {
+			if (!entity.equals(this)) {
+				throw new RuntimeException("Crash!");
+			}
 		}
 		
 	}
@@ -64,5 +67,9 @@ public class Entity {
 
 	public boolean isAt(int x, int y) {
 		return location.getX() == x && location.getY() == y;
+	}
+
+	public boolean isGoal() {
+		return false;
 	}
 }

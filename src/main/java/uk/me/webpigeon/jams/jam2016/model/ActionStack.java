@@ -76,4 +76,8 @@ public class ActionStack implements ListModel<Action> {
 		this.lock = false;
 	}
 
+	public int getCurrentAction() {
+		return current;
+	}
+
 }

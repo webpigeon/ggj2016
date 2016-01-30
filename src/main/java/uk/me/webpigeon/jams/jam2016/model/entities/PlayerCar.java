@@ -2,6 +2,7 @@ package uk.me.webpigeon.jams.jam2016.model.entities;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.util.Collection;
 
 import uk.me.webpigeon.jams.jam2016.model.Action;
 import uk.me.webpigeon.jams.jam2016.model.ActionStack;
@@ -24,6 +25,19 @@ public class PlayerCar extends Entity {
 		if (actions.hasMoreActions()) {
 			Action action = actions.nextAction();
 			action.apply(world, this);
+			
+			int typeType = world.getTileType(location.getX(), location.getY());
+			if (typeType == 2) {
+				world.incrementScore();
+			}
+			
+			Collection<Entity> entities = world.getEntityAt(location.getX(), location.getY());
+			for (Entity entity : entities) {
+				if (entity.isGoal()) {
+					world.incrementScore();
+				}
+			}
+			
 		}
 	}
 	
