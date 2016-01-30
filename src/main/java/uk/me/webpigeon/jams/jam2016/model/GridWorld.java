@@ -4,16 +4,28 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.Point;
+import java.util.ArrayList;
+import java.util.List;
+
+import uk.me.webpigeon.jams.jam2016.model.entities.Entity;
 
 public class GridWorld{
 	private Dimension size;
 	private int[][] grid;
 	private Point player;
 	
+	private List<Entity> entities = new ArrayList<Entity>();
+	
+	private Color[] types = {
+			Color.BLACK,
+			Color.WHITE
+	};
+	
 	public GridWorld(int width, int height) {
 		this.size = new Dimension(width, height);
 		this.grid = new int[width][height];
 		this.player = new Point(0,0);
+		this.entities = new ArrayList<Entity>();
 	}
 
 	public void setTileAt(int x, int y, int tid) {
@@ -38,12 +50,28 @@ public class GridWorld{
 	}
 
 	public void render(Graphics2D g) {
-		g.setColor(Color.BLUE);
-		g.fillRect(player.x*32+5, player.y*32, 32-10, 32);		
+		for (int x=0; x<size.width; x++) {
+			for (int y=0; y<size.height; y++) {
+				int type = grid[x][y];
+				
+				g.setColor(types[type]);
+				g.fillRect(x*32, y*32, 32, 32);
+			}
+		}
+		
+		for(Entity entity : entities){
+			entity.update();
+		}
 	}
 	
 	public boolean isRoadType(int x, int y){
 		return getTileType(x, y) == 1;
+	}
+
+	public void update() {
+		for(Entity entity : entities){
+			entity.update();
+		}	
 	}
 
 }
