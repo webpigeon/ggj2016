@@ -16,4 +16,21 @@ public enum Direction {
 		return direction;
 	}
 	
+	public Direction getLeftDirection(){
+		return getRotation(1);
+	}
+	
+	public Direction getBackDirection(){
+		return getRotation(2);
+	}
+	
+	public Direction getRightDirection(){
+		return getRotation(3);
+	}
+	
+	public Direction getRotation(int turns){
+		int n = Direction.values().length;
+		return Direction.values()[(ordinal() - turns + n) % n];
+	}
+	
 }

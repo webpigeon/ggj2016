@@ -41,5 +41,9 @@ public class Vector2D {
 	public int getY(){
 		return y;
 	}
+	
+	public Vector2D rotate90(){
+		return new Vector2D(y, -x);
+	}
 
 }

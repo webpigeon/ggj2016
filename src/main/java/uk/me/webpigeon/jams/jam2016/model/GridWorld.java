@@ -74,6 +74,10 @@ public class GridWorld{
 		int type = getTileType(x,y);
 		return type == 1 || type == 2;
 	}
+	
+	public boolean isRoadType(Vector2D location){
+		return isRoadType(location.getX(), location.getY());
+	}
 
 	public void update() {
 		for(Entity entity : entities){
