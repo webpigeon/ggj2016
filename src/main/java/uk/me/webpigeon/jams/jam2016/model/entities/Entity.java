@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Point;
 
-import uk.me.webpigeon.jams.jam2016.model.Direction;
 
 import uk.me.webpigeon.jams.jam2016.model.Vector2D;
 
