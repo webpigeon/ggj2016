@@ -28,16 +28,22 @@ public class GameStepper implements Runnable {
 	}
 
 	public void run() {
+		int score = 0;
+		
 		if (!interactive) {
 			stack.lock();
 		}
 		
 		try {			
+			int numActions = 0;
 			while( stack.hasMoreActions() || interactive ) {
 				if(list != null) list.setSelectedIndex(stack.getCurrentAction());
+				numActions++;
 				doTick();
 				Thread.sleep(1000);
 			}
+			
+			score = numActions + numActions/4;
 		} catch (InterruptedException ex) {
 			ex.printStackTrace();
 		} catch (RuntimeException ex) {
@@ -45,7 +51,7 @@ public class GameStepper implements Runnable {
 		}
 		
 		if (world.hasPlayerWon()) {
-			JOptionPane.showMessageDialog(frame, "You win");
+			JOptionPane.showMessageDialog(frame, "You win: "+score);
 		}
 		
 		if (!interactive) {
