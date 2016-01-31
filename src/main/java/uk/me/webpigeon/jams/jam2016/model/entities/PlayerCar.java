@@ -7,6 +7,7 @@ import java.util.Collection;
 
 import uk.me.webpigeon.jams.jam2016.model.Action;
 import uk.me.webpigeon.jams.jam2016.model.ActionStack;
+import uk.me.webpigeon.jams.jam2016.model.Direction;
 import uk.me.webpigeon.jams.jam2016.model.GridWorld;
 import uk.me.webpigeon.jams.jam2016.model.ImageGallery;
 import uk.me.webpigeon.jams.jam2016.model.Vector2D;
@@ -15,10 +16,11 @@ import uk.me.webpigeon.jams.jam2016.model.World;
 public class PlayerCar extends Entity {
 	private ActionStack actions;
 
-	public PlayerCar(int x, int y, ActionStack stack) {
+	public PlayerCar(int x, int y, Direction facing, ActionStack stack) {
 		super();
 		this.location = new Vector2D(x, y);
 		this.actions = stack;
+		this.facing = facing;
 	}
 
 	@Override

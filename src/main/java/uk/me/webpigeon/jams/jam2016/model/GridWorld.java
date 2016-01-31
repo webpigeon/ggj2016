@@ -27,6 +27,7 @@ public class GridWorld {
 	private Color[] types = { Color.GREEN, Color.BLACK, Color.YELLOW };
 	private boolean hasWon;
 	private int npcs;
+	private Direction spawnFacing;
 
 	public GridWorld(int width, int height) {
 		this.size = new Dimension(width, height);
@@ -37,6 +38,7 @@ public class GridWorld {
 		this.hasWon = false;
 		this.spawnPoint = null;
 		this.par = 0;
+		this.spawnFacing = Direction.NORTH;
 	}
 
 	public void setPar(int par) {
@@ -178,11 +180,21 @@ public class GridWorld {
 	}
 
 	public void setSpawnPoint(int startX, int startY) {
-		this.spawnPoint = new Vector2D(startX, startY);
+		setSpawnPoint(startX, startY, Direction.EAST);
 	}
 
 	public Vector2D getSpawnPoint() {
 		return this.spawnPoint;
+	}
+	
+	public Direction getSpawnDirection() {
+		return this.spawnFacing;
+	}
+
+	public void setSpawnPoint(int x, int y, Direction facing) {
+		this.spawnPoint = new Vector2D(x, y);
+		this.spawnFacing = facing;
+		
 	}
 
 }
