@@ -25,11 +25,16 @@ public class TrafficLight extends Entity{
 	private int current;
 	
 	public TrafficLight(Vector2D location, int activeTime, int nonActiveTime){
+		this(location, false, activeTime, nonActiveTime);
+	}
+	
+	public TrafficLight(Vector2D location, boolean active, int activeTime, int nonActiveTime) {
 		this.location = location;
 		this.activeTime = activeTime;
 		this.nonActiveTime = nonActiveTime;
+		this.active = active;
 	}
-	
+
 	@Override
 	public void update(GridWorld world){
 		current++;

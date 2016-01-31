@@ -52,7 +52,8 @@ public class MapLoader {
 			if ("lights".equals(type)) {
 				int activeTime = line.nextInt();
 				int nonActiveTime = line.nextInt();
-				world.addEntity(new TrafficLight(location, activeTime, nonActiveTime));
+				boolean active = line.nextBoolean();
+				world.addEntity(new TrafficLight(location, active, activeTime, nonActiveTime));
 			} else if ("npc".equals(type)) {
 				Direction facing = Direction.valueOf(line.next());
 				Entity npc = new AICar(location);

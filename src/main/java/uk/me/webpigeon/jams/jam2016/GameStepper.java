@@ -18,7 +18,7 @@ public class GameStepper implements Runnable {
 
 	private int totalActions;
 	private int currLevel;
-	private String levels[] = {"junction", "line", "roundabout", "others", "large" };
+	private String levels[] = {"line", "roundabout", "trafficLights", "others", "junction", "large" };
 
 	public GameStepper(JFrame frame, World world, ActionStack stack) {
 		this.stack = stack;
