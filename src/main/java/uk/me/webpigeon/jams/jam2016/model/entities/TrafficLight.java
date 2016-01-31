@@ -70,5 +70,10 @@ public class TrafficLight extends Entity{
 	public boolean isActive(){
 		return active;
 	}
+	
+	@Override
+	public String toString(){
+		return "TrafficLight: Active: " + active;
+	}
 
 }

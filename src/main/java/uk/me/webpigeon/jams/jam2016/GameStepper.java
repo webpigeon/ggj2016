@@ -56,12 +56,15 @@ public class GameStepper implements Runnable {
 				score = chainActions + (chainActions - 3);
 			}
 			world.addScore(score);
+			System.out.println("Score: " + score);
 
 		} catch (InterruptedException ex) {
 			ex.printStackTrace();
 		} catch (RuntimeException ex) {
+			frame.repaint();
 			JOptionPane.showMessageDialog(frame, ex.getMessage());
 			world.updateGlobalScore(-10);
+			
 			stack.unlock();
 			return;
 		}
@@ -86,7 +89,7 @@ public class GameStepper implements Runnable {
 	
 	public void loadWorld() {
 		stack.unlock();
-		
+		totalActions = 0;		
 		GridWorld nextWorld = MapLoader.loadWorld(levels[currLevel++]);
 		MapLoader.buildWorld(nextWorld, stack);
 		world.setWorld(nextWorld);
