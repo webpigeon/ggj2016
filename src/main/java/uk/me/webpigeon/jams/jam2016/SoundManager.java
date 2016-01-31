@@ -1,5 +1,6 @@
 package uk.me.webpigeon.jams.jam2016;
 
+import java.io.BufferedInputStream;
 import java.io.InputStream;
 
 import javax.sound.sampled.AudioInputStream;
@@ -27,7 +28,7 @@ public class SoundManager {
 		try{
 			backgroundMusic = AudioSystem.getClip();
 			InputStream is = SoundManager.class.getClassLoader().getResourceAsStream(backgroundFileName);
-			AudioInputStream sample = AudioSystem.getAudioInputStream(is);
+			AudioInputStream sample = AudioSystem.getAudioInputStream(new BufferedInputStream(is));
 			backgroundMusic.open(sample);
 		}catch(Exception e){
 			e.printStackTrace();
