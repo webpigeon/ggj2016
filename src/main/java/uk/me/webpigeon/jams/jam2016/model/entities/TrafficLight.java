@@ -55,9 +55,11 @@ public class TrafficLight extends Entity{
 				World.TILE_SIZE,
 				World.TILE_SIZE
 				);
-		
+		g.setColor(active ? Color.GREEN : Color.RED);
 		int timeRemaining = (active)? activeTime - current : nonActiveTime - current;
-		g.drawString("" + timeRemaining,location.getX() * World.TILE_SIZE, location.getY() * World.TILE_SIZE);
+		g.drawString("" + timeRemaining,
+				location.getX() * World.TILE_SIZE + (World.TILE_SIZE / 2),
+				location.getY() * World.TILE_SIZE + (World.TILE_SIZE / 2));
 	}
 	
 	public boolean isActive(){

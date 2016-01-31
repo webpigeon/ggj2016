@@ -19,6 +19,14 @@ public class AICar extends Entity {
 	public void update(GridWorld world) {
 
 		Vector2D nextPos = location.add(facing.getVector());
+		
+		// Check the right - nextPos needs to be viable and right needs to be road and not viable to wait
+		Vector2D nextAndRightPos = nextPos.add(facing.getRightDirection().getVector());
+		if(world.isViable(nextPos) && world.isRoadType(nextAndRightPos) && !world.isViable(nextAndRightPos)){
+			System.out.println("Gave way to the good chap on the right");
+			return;
+		}
+		
 		if (world.isViable(nextPos)) {
 			location = nextPos;
 			return;
