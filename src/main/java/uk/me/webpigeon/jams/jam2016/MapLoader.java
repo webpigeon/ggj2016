@@ -59,6 +59,9 @@ public class MapLoader {
 				Entity npc = new AICar(location);
 				npc.setFacing(facing);
 				world.addEntity(npc);
+			} else if ("player".equals(type)) {
+				Direction facing = Direction.valueOf(line.next());
+				world.setSpawnPoint(location.getX(), location.getY(), facing);
 			}
 			
 			line.close();
@@ -75,7 +78,8 @@ public class MapLoader {
 		world.setGallery(imageGallery);
 
 		Vector2D startPos = world.getSpawnPoint();
-		world.addEntity(new PlayerCar(startPos.getX(), startPos.getY(), actionModel));
+		Direction facing = world.getSpawnDirection();
+		world.addEntity(new PlayerCar(startPos.getX(), startPos.getY(), facing, actionModel));
 	}
 
 }
