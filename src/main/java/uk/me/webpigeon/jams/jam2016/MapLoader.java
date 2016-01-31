@@ -4,9 +4,12 @@ import java.io.InputStream;
 import java.util.Scanner;
 
 import uk.me.webpigeon.jams.jam2016.model.ActionStack;
+import uk.me.webpigeon.jams.jam2016.model.Direction;
 import uk.me.webpigeon.jams.jam2016.model.GridWorld;
 import uk.me.webpigeon.jams.jam2016.model.ImageGallery;
 import uk.me.webpigeon.jams.jam2016.model.Vector2D;
+import uk.me.webpigeon.jams.jam2016.model.entities.AICar;
+import uk.me.webpigeon.jams.jam2016.model.entities.Entity;
 import uk.me.webpigeon.jams.jam2016.model.entities.PlayerCar;
 import uk.me.webpigeon.jams.jam2016.model.entities.TrafficLight;
 
@@ -38,13 +41,26 @@ public class MapLoader {
 			}
 			line.close();
 		}
+		
+		//load the entities
 		while(scanner.hasNextLine()){
-			// Traffic lights
-			String[]  line = scanner.nextLine().split(" ");
-			Vector2D location = new Vector2D(Integer.parseInt(line[0]), Integer.parseInt(line[1]));
-			int activeTime = Integer.parseInt(line[2]);
-			int nonActiveTime = Integer.parseInt(line[3]);
-			world.addEntity(new TrafficLight(location, activeTime, nonActiveTime));			
+			Scanner line = new Scanner(scanner.nextLine());
+			
+			String type = line.next();
+			Vector2D location = new Vector2D(line.nextInt(), line.nextInt());
+			
+			if ("lights".equals(type)) {
+				int activeTime = line.nextInt();
+				int nonActiveTime = line.nextInt();
+				world.addEntity(new TrafficLight(location, activeTime, nonActiveTime));
+			} else if ("npc".equals(type)) {
+				Direction facing = Direction.valueOf(line.next());
+				Entity npc = new AICar(location);
+				npc.setFacing(facing);
+				world.addEntity(npc);
+			}
+			
+			line.close();
 		}
 		scanner.close();
 
