@@ -11,6 +11,9 @@ import java.awt.event.MouseListener;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 
+import uk.me.webpigeon.jams.jam2016.model.ActionStack;
+import uk.me.webpigeon.jams.jam2016.model.World;
+
 public class TitleScreen extends JComponent implements MouseListener {
 	private JFrame frame;
 	
@@ -24,11 +27,14 @@ public class TitleScreen extends JComponent implements MouseListener {
 	public void paintComponent(Graphics g) {
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, getWidth(), getHeight());
+		
 
 		// TODO render world
 
 		g.setColor(Color.WHITE);
 		g.drawString("Game Jam 2016", 100, 100);
+		g.drawString("Daily Trudge (Ritual)", 100, 125);
+		g.drawString("Can you get to work safely in this traffic?", 100, 150);
 	}
 
 	public void mouseClicked(MouseEvent arg0) {
