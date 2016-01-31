@@ -53,6 +53,9 @@ public class App {
 		World world = new World();
 		GameStepper stepper = new GameStepper(frame, world, actionModel);
 		stepper.loadWorld();
+		
+		SoundManager soundDude = new SoundManager();
+		soundDude.startBackground();
 
 		Box box = Box.createVerticalBox();
 		JToolBar toolbar = new JToolBar();
