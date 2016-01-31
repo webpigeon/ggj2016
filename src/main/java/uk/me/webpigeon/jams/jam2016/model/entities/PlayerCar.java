@@ -25,8 +25,6 @@ public class PlayerCar extends Entity {
 
 	@Override
 	public void update(GridWorld world) {
-		super.update(world);
-
 		if (actions.hasMoreActions()) {
 			Action action = actions.nextAction();
 			action.apply(world, this);
@@ -44,6 +42,7 @@ public class PlayerCar extends Entity {
 			}
 
 		}
+		super.update(world);
 	}
 
 	@Override

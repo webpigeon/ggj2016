@@ -36,7 +36,7 @@ public class Entity {
 		Collection<Entity> entities = world.getEntityAt(location.getX(), location.getY());
 		for (Entity entity : entities) {
 			if (!entity.equals(this)) {
-				throw new RuntimeException("Crash!" + entity);
+				throw new RuntimeException("Crash!");
 			}
 		}
 
