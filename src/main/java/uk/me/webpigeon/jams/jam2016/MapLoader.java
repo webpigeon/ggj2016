@@ -8,6 +8,7 @@ import uk.me.webpigeon.jams.jam2016.model.GridWorld;
 import uk.me.webpigeon.jams.jam2016.model.ImageGallery;
 import uk.me.webpigeon.jams.jam2016.model.Vector2D;
 import uk.me.webpigeon.jams.jam2016.model.entities.PlayerCar;
+import uk.me.webpigeon.jams.jam2016.model.entities.TrafficLight;
 
 public class MapLoader {
 
@@ -36,6 +37,14 @@ public class MapLoader {
 				world.setTileAt(x, y, line.nextInt());
 			}
 			line.close();
+		}
+		while(scanner.hasNextLine()){
+			// Traffic lights
+			String[]  line = scanner.nextLine().split(" ");
+			Vector2D location = new Vector2D(Integer.parseInt(line[0]), Integer.parseInt(line[1]));
+			int activeTime = Integer.parseInt(line[2]);
+			int nonActiveTime = Integer.parseInt(line[3]);
+			world.addEntity(new TrafficLight(location, activeTime, nonActiveTime));			
 		}
 		scanner.close();
 

@@ -10,6 +10,7 @@ import java.util.List;
 
 import uk.me.webpigeon.jams.jam2016.model.entities.AICar;
 import uk.me.webpigeon.jams.jam2016.model.entities.Entity;
+import uk.me.webpigeon.jams.jam2016.model.entities.TrafficLight;
 
 public class GridWorld {
 	private Dimension size;
@@ -134,7 +135,13 @@ public class GridWorld {
 
 		for (Entity entity : this.entities) {
 			if (entity.isAt(x, y)) {
-				entities.add(entity);
+				if(entity instanceof TrafficLight){
+					if(((TrafficLight)entity).isActive()){
+						entities.add(entity);
+					}
+				}else{
+					entities.add(entity);
+				}
 			} else {
 			}
 		}
